@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/second/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#b8b6b6",
+    "selectedColor": "#f2921b",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/course.png",
+        "selectedIconPath": "static/course-1.png",
+        "text": "班课"
+      },
+      {
+        "pagePath": "pages/second/index",
+        "iconPath": "static/coupon.png",
+        "selectedIconPath": "static/coupon-1.png",
+        "text": "限时优惠"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap24.json"
+}
