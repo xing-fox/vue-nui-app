@@ -1,1 +1,2 @@
-<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title}}</text></view></view>
+<import src="./index.vue.wxml" />
+    <template is="ffd6c0c6" data="{{ ...$root['0'], $root }}"/>

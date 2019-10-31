@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/second/index"
+    "pages/second/index",
+    "pages/me/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -9,6 +10,7 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
+  "usingComponents": {},
   "tabBar": {
     "color": "#b8b6b6",
     "selectedColor": "#f2921b",
@@ -26,6 +28,12 @@
         "iconPath": "static/coupon.png",
         "selectedIconPath": "static/coupon-1.png",
         "text": "限时优惠"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "iconPath": "static/me.png",
+        "selectedIconPath": "static/me-1.png",
+        "text": "我的"
       }
     ]
   },
@@ -35,7 +43,6 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "Dueape",
-  "compilerVersion": "2.3.7",
-  "usingComponents": {}
+  "appname": "DueApe",
+  "compilerVersion": "2.3.7"
 }

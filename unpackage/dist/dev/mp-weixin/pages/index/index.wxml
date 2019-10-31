@@ -1,1 +1,1 @@
-<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title}}</text></view></view>
+<view><view class="content-picker"><view class="picker picker-school"><text>学校</text></view><view class="picker picker-course"><utext vue-id="1" bind:__l="__l" vue-slots="{{['default']}}">班课类型</utext></view></view></view>

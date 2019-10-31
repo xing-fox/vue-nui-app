@@ -1,8 +1,12 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view>
+		<view class="content-picker">
+			<view class="picker picker-school">
+				<text>学校</text>
+			</view>
+			<view class="picker picker-course">
+				<utext>班课类型</utext>
+			</view>
 		</view>
 	</view>
 </template>
@@ -10,43 +14,47 @@
 <script>
 	export default {
 		data() {
-			return {
-				title: 'Hello-first'
-			}
+			return {}
 		},
 		onLoad() {
-
 		},
 		methods: {
-
 		}
 	}
 </script>
 
 <style>
-	.content {
+	page {
+		background: #f5f5f5;
+	}
+	.content-picker {
+		height: 70rpx;
+		padding: 15rpx 25rpx;
+		background: #fff;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	.picker {
+		color: #999;
+		font-size: 26rpx;
+		padding-left: 20rpx;
+		box-sizing: border-box;
+	}
+	.picker-school {
+		width: 280rpx;
+		height: 70rpx;
+		border-radius: 10rpx;
+		background: #e8e8e8;
+		display: inline-flex;
 		align-items: center;
-		justify-content: center;
 	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	.picker-course {
+		width: 400rpx;
+		height: 70rpx;
+		border-radius: 10rpx;
+		background: #e8e8e8;
+		display: inline-flex;
+		align-items: center;
 	}
 </style>

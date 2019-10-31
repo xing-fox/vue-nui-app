@@ -5,27 +5,24 @@
     "iPad"
   ],
   "id": "__UNI__B50FAB8",
-  "name": "Dueape",
+  "name": "DueApe",
   "version": {
-    "name": "1.0.1",
-    "code": 101
+    "name": "1.0.2",
+    "code": 102
   },
-  "description": "",
-  "launch_path": "__uniappview.html",
+  "description": "DueApe班课系统",
+  "launch_path": "__uniappservice.html",
   "developer": {
     "name": "",
     "email": "",
     "url": ""
   },
   "permissions": {
-    "Payment": {},
-    "UniNView": {
-      "description": "UniNView原生渲染"
-    }
+    "Payment": {}
   },
   "plus": {
     "useragent": {
-      "value": "uni-app",
+      "value": "uni-app appservice",
       "concatenate": true
     },
     "splashscreen": {
@@ -36,18 +33,49 @@
     },
     "popGesture": "close",
     "launchwebview": {
-      "id": "1",
-      "kernel": "WKWebview",
-      "uni-app": "auto"
+      "render": "always",
+      "kernel": "UIWebview"
     },
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
       "background": "#F8F8F8"
     },
-    "usingComponents": true,
+    "usingComponents": false,
     "nvueCompiler": "uni-app",
     "distribute": {
+      "icons": {
+        "android": {
+          "hdpi": "unpackage/res/icons/72x72.png",
+          "xhdpi": "unpackage/res/icons/96x96.png",
+          "xxhdpi": "unpackage/res/icons/144x144.png",
+          "xxxhdpi": "unpackage/res/icons/192x192.png"
+        },
+        "ios": {
+          "appstore": "unpackage/res/icons/1024x1024.png",
+          "ipad": {
+            "app": "unpackage/res/icons/76x76.png",
+            "app@2x": "unpackage/res/icons/152x152.png",
+            "notification": "unpackage/res/icons/20x20.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "proapp@2x": "unpackage/res/icons/167x167.png",
+            "settings": "unpackage/res/icons/29x29.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "spotlight": "unpackage/res/icons/40x40.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png"
+          },
+          "iphone": {
+            "app@2x": "unpackage/res/icons/120x120.png",
+            "app@3x": "unpackage/res/icons/180x180.png",
+            "notification@2x": "unpackage/res/icons/40x40.png",
+            "notification@3x": "unpackage/res/icons/60x60.png",
+            "settings@2x": "unpackage/res/icons/58x58.png",
+            "settings@3x": "unpackage/res/icons/87x87.png",
+            "spotlight@2x": "unpackage/res/icons/80x80.png",
+            "spotlight@3x": "unpackage/res/icons/120x120.png"
+          }
+        }
+      },
       "google": {
         "permissions": [
           "<uses-feature android:name=\"android.hardware.camera\"/>",
@@ -74,7 +102,8 @@
           "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
           "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
           "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-        ]
+        ],
+        "abiFilters": []
       },
       "apple": {},
       "plugins": {
@@ -95,37 +124,12 @@
     },
     "uni-app": {
       "compilerVersion": "2.3.7",
-      "control": "v8",
+      "control": "webview",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
       "nvue": {
         "flex-direction": "column"
       }
-    },
-    "tabBar": {
-      "color": "#b8b6b6",
-      "selectedColor": "#f2921b",
-      "borderStyle": "rgba(0,0,0,0.4)",
-      "backgroundColor": "#ffffff",
-      "list": [
-        {
-          "pagePath": "pages/index/index",
-          "iconPath": "static/course.png",
-          "selectedIconPath": "static/course-1.png",
-          "text": "班课"
-        },
-        {
-          "pagePath": "pages/second/index",
-          "iconPath": "static/coupon.png",
-          "selectedIconPath": "static/coupon-1.png",
-          "text": "限时优惠"
-        }
-      ],
-      "height": "50px",
-      "child": [
-        "lauchwebview"
-      ],
-      "selected": 0
     }
   }
 }
