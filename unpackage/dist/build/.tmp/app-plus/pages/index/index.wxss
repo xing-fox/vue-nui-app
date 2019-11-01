@@ -4,7 +4,10 @@ page {
 }
 .content-picker {
 	height: 70rpx;
-	padding: 15rpx 25rpx;
+	padding-top: 15rpx;
+	padding-right: 25rpx;
+	padding-bottom: 15rpx;
+	padding-left: 25rpx;
 	background: #fff;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -54,5 +57,102 @@ page {
 	-webkit-align-items: center;
 	    -ms-flex-align: center;
 	        align-items: center;
+}
+.content-list {
+	margin-top: 30rpx;
+	margin-right: 25rpx;
+	margin-left: 25rpx;
+	padding-top: 20rpx;
+	padding-right: 30rpx;
+	padding-bottom: 20rpx;
+	padding-left: 30rpx;
+	border-radius: 10rpx;
+	-webkit-box-shadow: 0rpx -2rpx 8rpx rgba(0, 0, 0, .06);
+	        box-shadow: 0rpx -2rpx 8rpx rgba(0, 0, 0, .06);
+	background: #fff;
+}
+.list {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.list-img {
+	width: 216rpx;
+	height: 172rpx;
+	will-change: transform;
+}
+.list-main {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	margin-left: 24rpx;
+}
+.list-main-content {
+	width: 100%;
+	color: #999;
+	font-size: 26rpx;
+	line-height: 28rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.list-title {
+	color: #333;
+	font-size: 28rpx;
+	font-weight: bold;
+	width: 100%;
+	line-height: 30rpx;
+}
+.list-main-img {
+	width: 26rpx;
+	height: 26rpx;
+	margin-right: 15rpx;
+}
+.list-right {
+	margin-left: 15rpx;
+}
+.text-color {
+	color: #ff9704;
+	font-size: 32rpx;
+	line-height: 34rpx;
+	margin-right: 10rpx;
+}
+.text-weight {
+	font-weight: bold;
 }
 
