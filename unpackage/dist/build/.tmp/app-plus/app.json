@@ -10,7 +10,6 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
   "tabBar": {
     "color": "#b8b6b6",
     "selectedColor": "#f2921b",
@@ -44,5 +43,6 @@
     "autoclose": false
   },
   "appname": "DueApe",
-  "compilerVersion": "2.3.7"
+  "compilerVersion": "2.3.7",
+  "usingComponents": {}
 }

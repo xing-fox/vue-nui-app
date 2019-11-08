@@ -7,7 +7,7 @@
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
-        "usingComponents" : false,
+        "usingComponents" : true,
         "nvueCompiler" : "uni-app",
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
@@ -97,9 +97,11 @@
     "mp-weixin" : {
         "appid" : "wx1a67a6b022e6f887",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "es6" : false
         },
-        "usingComponents" : true
+        "usingComponents" : false,
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true
@@ -109,5 +111,10 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "devServer" : {
+            "https" : false
+        }
     }
 }

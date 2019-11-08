@@ -11,18 +11,21 @@
     "code": 102
   },
   "description": "DueApe班课系统",
-  "launch_path": "__uniappservice.html",
+  "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
     "email": "",
     "url": ""
   },
   "permissions": {
-    "Payment": {}
+    "Payment": {},
+    "UniNView": {
+      "description": "UniNView原生渲染"
+    }
   },
   "plus": {
     "useragent": {
-      "value": "uni-app appservice",
+      "value": "uni-app",
       "concatenate": true
     },
     "splashscreen": {
@@ -33,15 +36,16 @@
     },
     "popGesture": "close",
     "launchwebview": {
-      "render": "always",
-      "kernel": "UIWebview"
+      "id": "1",
+      "kernel": "WKWebview",
+      "uni-app": "auto"
     },
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
       "background": "#F8F8F8"
     },
-    "usingComponents": false,
+    "usingComponents": true,
     "nvueCompiler": "uni-app",
     "distribute": {
       "icons": {
@@ -124,12 +128,43 @@
     },
     "uni-app": {
       "compilerVersion": "2.3.7",
-      "control": "webview",
+      "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
       "nvue": {
         "flex-direction": "column"
       }
+    },
+    "tabBar": {
+      "color": "#b8b6b6",
+      "selectedColor": "#f2921b",
+      "borderStyle": "rgba(0,0,0,0.4)",
+      "backgroundColor": "#ffffff",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "iconPath": "static/course.png",
+          "selectedIconPath": "static/course-1.png",
+          "text": "班课"
+        },
+        {
+          "pagePath": "pages/second/index",
+          "iconPath": "static/coupon.png",
+          "selectedIconPath": "static/coupon-1.png",
+          "text": "限时优惠"
+        },
+        {
+          "pagePath": "pages/me/index",
+          "iconPath": "static/me.png",
+          "selectedIconPath": "static/me-1.png",
+          "text": "我的"
+        }
+      ],
+      "height": "50px",
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
     }
   }
 }
