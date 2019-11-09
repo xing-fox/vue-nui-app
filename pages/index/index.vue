@@ -1,49 +1,47 @@
 <template>
 	<view class="content">
 		<view class="content-picker">
-			<view class="picker picker-school">
-				<picker
-					mode="multiSelector"
-					@columnchange="bindMultiPickerColumnChange"
-					:value="multiIndex"
-					:range="multiArray">
-					<view>学校</view>
-					<image class="picker-img" src="/static/icon/arr_down.png"></image>
-				</picker>
-			</view>
+			<picker
+				class="picker picker-school"
+				mode="multiSelector"
+				@columnchange="choiseCollege"
+				:value="multiIndex"
+				:range="multiArray">
+				<view class="picker-text">{{ collegeName }}</view>
+				<image class="picker-img" src="/static/icon/arr_down.png"></image>
+			</picker>
 			<view class="picker picker-course">
-				<view>班课类型</view>
+				<view>{{ className }}</view>
 				<image class="picker-img" src="/static/icon/arr_down.png"></image>
 			</view>
 		</view>
-		<view class="content-main">
-			<scroll-view
-				scroll-y="true"
-				class="scroll-Y">
-				<view class="content-list" v-for="item in AllData" :key="item.classId">
-					<view class="list">
-						<image class="list-img" src="https://dueape-nation-1255328906.cos.ap-singapore.myqcloud.com/image/2019103006105513.jpg"></image>
-						<view class="list-main">
-							<view class="list-title">{{ item.title }}</view>
-							<view class="list-main-content">
-								<text>线上</text>
-								<image class="list-main-img list-right" src="/static/time.png"></image>
-								<text>{{ item.updateTime }}</text>
-							</view>
-							<view class="list-main-content">
-								<image class="list-main-img" src="/static/bm.png"></image>
-								<text class="text-color">{{ item.applyNum }}</text>
-								<text>人报名</text>
-							</view>
-							<view class="list-main-content">
-								<text class="text-color">$</text>
-								<text class="text-color">{{ item.coursePrice }}</text>
-							</view>
+		<scroll-view
+			class="content-main"
+			scroll-y="true"
+			@scrolltolower="addData">
+			<view class="content-list" v-for="item in AllData" :key="item.classId">
+				<view class="list">
+					<image class="list-img" mode="aspectFill" src="https://dueape-nation-1255328906.cos.ap-singapore.myqcloud.com/image/2019103006105513.jpg"></image>
+					<view class="list-main">
+						<view class="list-title">{{ item.title }}</view>
+						<view class="list-main-content">
+							<text>线上</text>
+							<image class="list-main-img list-right" src="/static/time.png"></image>
+							<text>{{ item.updateTime }}</text>
+						</view>
+						<view class="list-main-content">
+							<image class="list-main-img" src="/static/bm.png"></image>
+							<text class="text-color">{{ item.applyNum }}</text>
+							<text>人报名</text>
+						</view>
+						<view class="list-main-content">
+							<text class="text-color">$</text>
+							<text class="text-color">{{ item.coursePrice }}</text>
 						</view>
 					</view>
 				</view>
-			</scroll-view>
-		</view>
+			</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -52,24 +50,21 @@
 	import { GetAllClassUrl } from 'config/fetch'
 	export default {
 		data () {
-			let _schoolData = {}
-			uni.getStorage({
-				key: 'storage_school',
-				success: function (res) {
-					data = res.data
-				}
-			})
 			return {
 				AllData: [],
-				schoolData1: [],
+				className: '班课类型', // 班课类型
+				collegeName: '学校', // 学校名称
+				schoolAUSData: [], // 澳洲学校
+				schoolUSAData: [], // 美国学校
 				multiArray: [
 					['全部', '澳洲', '美国'],
-					['中国', '日本']
+					['全部']
 				],
 				multiIndex: [0, 0]
 			}
 		},
 		async onLoad () {
+			const self = this
 			const Data = await RequestApi(`${GetAllClassUrl}`, 'POST', {
 				order: 'desc',
 				sortField: 'class_id',
@@ -80,55 +75,26 @@
 				collegeId: undefined
 			})
 			this.AllData = Data.data.results.data
+			// 获取学校信息
+			uni.getStorage({
+				key: 'storage_school',
+				success: function (res) {
+					res.data.data.results.data.map(item => {
+						if (Number(item.countryId) === 1) self.schoolAUSData.push(item.collegeName)
+						if (Number(item.countryId) === 2) self.schoolUSAData.push(item.collegeName)
+					})
+				}
+			})
 		},
 		methods: {
-			bindMultiPickerColumnChange (e) {
-				console.log(e)
-				
-				// console.log('修改的列为：' + e.detail.column + '，值为：' + e.detail.value)
-				// this.multiIndex[e.detail.column] = e.detail.value
-				// switch (e.detail.column) {
-				// 	case 0: //拖动第1列
-				// 		switch (this.multiIndex[0]) {
-				// 			case 0:
-				// 				this.multiArray[1] = ['中国', '日本']
-				// 				this.multiArray[2] = ['北京', '上海', '广州']
-				// 				break
-				// 			case 1:
-				// 				this.multiArray[1] = ['英国', '法国']
-				// 				this.multiArray[2] = ['伦敦', '曼彻斯特']
-				// 				break
-				// 		}
-				// 		this.multiIndex.splice(1, 1, 0)
-				// 		this.multiIndex.splice(2, 1, 0)
-				// 		break
-				// 	case 1: //拖动第2列
-				// 		switch (this.multiIndex[0]) { //判断第一列是什么
-				// 			case 0:
-				// 				switch (this.multiIndex[1]) {
-				// 					case 0:
-				// 						this.multiArray[2] = ['北京', '上海', '广州']
-				// 						break
-				// 					case 1:
-				// 						this.multiArray[2] = ['东京','北海道']
-				// 						break
-				// 				}
-				// 				break
-				// 			case 1:
-				// 				switch (this.multiIndex[1]) {
-				// 					case 0:
-				// 						this.multiArray[2] = ['伦敦', '曼彻斯特']
-				// 						break
-				// 					case 1:
-				// 						this.multiArray[2] = ['巴黎', '马赛']
-				// 						break
-				// 				}
-				// 				break
-				// 		}
-				// 		this.multiIndex.splice(2, 1, 0)
-				// 		break
-				// }
-				// this.$forceUpdate()
+			addData () {
+				console.log(123)
+			},
+			choiseCollege (e) {
+				if (e.detail.column === 0) {
+					this.multiArray.splice(1, 1, [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value])
+					this.collegeName = [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value][0]
+				}
 			}
 		}
 	}
@@ -140,7 +106,8 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
-		padding-top: 100rpx;
+		line-height: 1;
+		padding-top: 90rpx;
 		background: #f5f5f5;
 	}
 	.content-picker {
@@ -166,6 +133,13 @@
 		box-sizing: border-box;
 		position: relative;
 	}
+	.picker-text {
+		width: 200rpx;
+		display: inline-block;
+		overflow: hiddne; 	
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 	.picker-img {
 		width: 30rpx;
 		height: 30rpx;
@@ -180,7 +154,7 @@
 		height: 70rpx;
 		border-radius: 10rpx;
 		background: #e8e8e8;
-		display: inline-flex;
+		 display: inline-flex;
 		align-items: center;
 	}
 	.picker-course {
@@ -192,16 +166,16 @@
 		align-items: center;
 	}
 	.content-main {
-		flex: 1;
+		height: calc(100vh - 90rpx);
 	}
 	.content-list {
 		margin-top: 30rpx;
 		margin-right: 25rpx;
 		margin-left: 25rpx;
 		margin-bottom: 30rpx;
-		padding-top: 20rpx;
+		padding-top: 30rpx;
 		padding-right: 30rpx;
-		padding-bottom: 20rpx;
+		padding-bottom: 30rpx;
 		padding-left: 30rpx;
 		border-radius: 10rpx;
 		box-shadow: 0rpx -2rpx 8rpx rgba(0, 0, 0, .06);

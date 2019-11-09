@@ -10,7 +10,6 @@ export default {
 			// 存储所有学校数据数据
 		    uni.setStorageSync('storage_school', Data)
 		} catch (e) {}
-		console.log(Data)
 	},
 	onShow: function() {
 		console.log('App Show')

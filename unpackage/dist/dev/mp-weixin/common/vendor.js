@@ -1,9 +1,9 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
-
-/***/ 1:
-/*!**************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/pages.json ***!
-  \**************************************************/
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
+/* 0 */,
+/* 1 */
+/*!***************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/pages.json ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11,191 +11,7 @@
 
 
 /***/ }),
-
-/***/ 11:
-/*!****************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mpvue-page-factory/index.js ***!
-  \****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ 2);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function callHook$1(vm, hook, params) {
-  var handlers = vm.$options[hook];
-  if (hook === 'onError' && handlers) {
-    handlers = [handlers];
-  }
-  if(typeof handlers === 'function'){
-    handlers = [handlers]
-  }
-
-  var ret;
-  if (handlers) {
-    for (var i = 0, j = handlers.length; i < j; i++) {
-//      try {
-        ret = handlers[i].call(vm, params);
-//       } catch (e) {//fixed by xxxxxx
-//         handleError(e, vm, (hook + " hook"));
-//       }
-    }
-  }
-  if (vm._hasHookEvent) {
-    vm.$emit('hook:' + hook);
-  }
-
-  // for child
-  if (vm.$children.length) {
-    vm.$children.forEach(function (v) {
-      return callHook$1(v, hook, params);
-    });
-  }
-
-  return ret
-}
-
-function getRootVueVm(page) {
-  return page.$vm.$root;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (function (App) {
-  return {
-    // 页面的初始数据
-    data: {
-      $root: {}
-    },
-
-    // mp lifecycle for vue
-    // 生命周期函数--监听页面加载
-    onLoad:function onLoad(query) {
-      //页面加载的时候
-      var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(App);
-      // 挂载Vue对象到page上
-      this.$vm = app;
-      var rootVueVM = app.$root;
-      rootVueVM.__wxExparserNodeId__ = this.__wxExparserNodeId__//fixed by xxxxxx(createIntersectionObserver)
-      rootVueVM.__wxWebviewId__ = this.__wxWebviewId__//fixed by xxxxxx(createIntersectionObserver)
-      
-      //初始化mp对象
-      if (!rootVueVM.$mp) {
-        rootVueVM.$mp = {};
-      }
-      var mp = rootVueVM.$mp;
-      mp.mpType = 'page';
-      mp.page = this;
-      mp.query = query;
-      mp.status = 'load';
-      //mount 要在 mp.status = 'load';赋值之后，不然mount方法会重复添加微信Page
-      //具体原因参考mpvue核心库源码，_initMP方法
-      app.$mount();
-    },
-
-    handleProxy: function handleProxy(e) {
-      var rootVueVM = getRootVueVm(this);
-      return rootVueVM.$handleProxyWithVue(e)
-    },
-
-    // 生命周期函数--监听页面显示
-    onShow:function onShow() {
-      var rootVueVM = getRootVueVm(this);
-      var mp = rootVueVM.$mp;
-      mp.status = 'show';
-      callHook$1(rootVueVM, 'onShow');
-      //   // 只有页面需要 setData
-      rootVueVM.$nextTick(function () {
-        rootVueVM._initDataToMP();
-      });
-    },
-
-    // 生命周期函数--监听页面初次渲染完成
-    onReady:function onReady() {
-      var rootVueVM = getRootVueVm(this);
-      var mp = rootVueVM.$mp;
-      mp.status = 'ready';
-      callHook$1(rootVueVM, 'onReady');
-    },
-
-    // 生命周期函数--监听页面隐藏
-    onHide: function onHide() {
-      var rootVueVM = getRootVueVm(this);
-      var mp = rootVueVM.$mp;
-      mp.status = 'hide';
-      callHook$1(rootVueVM, 'onHide');
-    },
-
-    // 生命周期函数--监听页面卸载
-    onUnload: function onUnload() {
-      var rootVueVM = getRootVueVm(this);
-      callHook$1(rootVueVM, 'onUnload');
-      rootVueVM.$destroy();
-    },
-
-    // 页面相关事件处理函数--监听用户下拉动作
-    onPullDownRefresh: function onPullDownRefresh() {
-      var rootVueVM = getRootVueVm(this);
-      callHook$1(rootVueVM, 'onPullDownRefresh');
-    },
-
-    // 页面上拉触底事件的处理函数
-    onReachBottom: function onReachBottom() {
-      var rootVueVM = getRootVueVm(this);
-      callHook$1(rootVueVM, 'onReachBottom');
-    },
-
-    // Do something when page scroll
-    onPageScroll: function onPageScroll(options) {
-      var rootVueVM = getRootVueVm(this);
-      callHook$1(rootVueVM, 'onPageScroll', options);
-    },
-
-    // 当前是 tab 页时，点击 tab 时触发
-    onTabItemTap: function onTabItemTap(options) {
-      var rootVueVM = getRootVueVm(this);
-      callHook$1(rootVueVM, 'onTabItemTap', options);
-    },
-		
-    // // 用户点击右上角分享
-    onShareAppMessage: App.onShareAppMessage ?
-      function (options) {
-        var rootVueVM = getRootVueVm(this);
-        return callHook$1(rootVueVM, 'onShareAppMessage', options);
-      } : null,
-
-    //fixed by xxxxxx
-    onNavigationBarButtonTap: function onNavigationBarButtonTap(options) {
-        var rootVueVM = getRootVueVm(this);
-    		callHook$1(rootVueVM, "onNavigationBarButtonTap", options)
-    },
-    onNavigationBarSearchInputChanged: function onNavigationBarSearchInputChanged(options) {
-        var rootVueVM = getRootVueVm(this);
-    		callHook$1(rootVueVM, "onNavigationBarSearchInputChanged", options)
-    },
-    onNavigationBarSearchInputConfirmed: function onNavigationBarSearchInputConfirmed(options) {
-        var rootVueVM = getRootVueVm(this);
-    		callHook$1(rootVueVM, "onNavigationBarSearchInputConfirmed", options)
-    },
-    onNavigationBarSearchInputClicked: function onNavigationBarSearchInputClicked(options) {
-        var rootVueVM = getRootVueVm(this);
-    		callHook$1(rootVueVM, "onNavigationBarSearchInputClicked", options)
-    },
-    onBackPress: function onBackPress(options) {
-        var rootVueVM = getRootVueVm(this);
-    		return callHook$1(rootVueVM, "onBackPress",options)
-    },
-		$getAppWebview:function (e) {
-				return plus.webview.getWebviewById('' + this.__wxWebviewId__)
-		}
-  };
-});
-
-
-/***/ }),
-
-/***/ 2:
+/* 2 */
 /*!***************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mpvue/index.js ***!
   \***************************************************************************/
@@ -5813,8 +5629,7 @@ try {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-
-/***/ 3:
+/* 3 */
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -5844,31 +5659,10 @@ module.exports = g;
 
 
 /***/ }),
-
-/***/ 34:
-/*!*****************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/config/api.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.RequestApi = void 0;var RequestApi = function RequestApi(url, methods, data) {
-  return new Promise(function (reslove, reject) {
-    uni.request({
-      url: url,
-      method: methods,
-      data: data,
-      success: function success(res) {return reslove(res);},
-      error: function error(err) {return reject(err);} });
-
-  });
-};exports.RequestApi = RequestApi;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 37)["default"]))
-
-/***/ }),
-
-/***/ 37:
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -7367,20 +7161,18 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-
-/***/ 38:
+/* 8 */
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 39);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 9);
 
 
 /***/ }),
-
-/***/ 39:
+/* 9 */
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -7411,7 +7203,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 40);
+module.exports = __webpack_require__(/*! ./runtime */ 10);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -7427,8 +7219,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-
-/***/ 40:
+/* 10 */
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8159,28 +7950,52 @@ if (hadRuntime) {
 
 
 /***/ }),
-
-/***/ 41:
-/*!*******************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/config/fetch.js ***!
-  \*******************************************************/
+/* 11 */
+/*!******************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/api.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.GetAllSchoolUrl = exports.GetAllClassUrl = void 0;var Api = 'https://weixin.dueape.com';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.RequestApi = void 0;var RequestApi = function RequestApi(url, methods, data) {
+  return new Promise(function (reslove, reject) {
+    uni.request({
+      url: url,
+      method: methods,
+      data: data,
+      success: function success(res) {return reslove(res);},
+      error: function error(err) {return reject(err);} });
+
+  });
+};exports.RequestApi = RequestApi;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 7)["default"]))
+
+/***/ }),
+/* 12 */
+/*!********************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/fetch.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.GetIndexCoupon = exports.GetAllSchoolUrl = exports.GetAllClassUrl = void 0;var Api = 'https://weixin.dueape.com';
 /**
-                                                                                                                                                                             * 获取所有班课
-                                                                                                                                                                             */
+                                                                                                                                                                                                      * 获取所有班课
+                                                                                                                                                                                                      */
 var GetAllClassUrl = "".concat(Api, "/dueape/class/index");
 /**
                                                              * 获取所有学校
                                                              */exports.GetAllClassUrl = GetAllClassUrl;
-var GetAllSchoolUrl = "".concat(Api, "/dueape/college/index");exports.GetAllSchoolUrl = GetAllSchoolUrl;
+var GetAllSchoolUrl = "".concat(Api, "/dueape/college/index");
+/**
+                                                                * 获取充值优惠券
+                                                                */exports.GetAllSchoolUrl = GetAllSchoolUrl;
+var GetIndexCoupon = "".concat(Api, "/dueape/coupon/getIndexCoupon");exports.GetIndexCoupon = GetIndexCoupon;
 
 /***/ }),
-
-/***/ 9:
+/* 13 */
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
   \********************************************************************/
@@ -8285,7 +8100,189 @@ function normalizeComponent (
 }
 
 
-/***/ })
+/***/ }),
+/* 14 */,
+/* 15 */
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mpvue-page-factory/index.js ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-}]);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ 2);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function callHook$1(vm, hook, params) {
+  var handlers = vm.$options[hook];
+  if (hook === 'onError' && handlers) {
+    handlers = [handlers];
+  }
+  if(typeof handlers === 'function'){
+    handlers = [handlers]
+  }
+
+  var ret;
+  if (handlers) {
+    for (var i = 0, j = handlers.length; i < j; i++) {
+//      try {
+        ret = handlers[i].call(vm, params);
+//       } catch (e) {//fixed by xxxxxx
+//         handleError(e, vm, (hook + " hook"));
+//       }
+    }
+  }
+  if (vm._hasHookEvent) {
+    vm.$emit('hook:' + hook);
+  }
+
+  // for child
+  if (vm.$children.length) {
+    vm.$children.forEach(function (v) {
+      return callHook$1(v, hook, params);
+    });
+  }
+
+  return ret
+}
+
+function getRootVueVm(page) {
+  return page.$vm.$root;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (function (App) {
+  return {
+    // 页面的初始数据
+    data: {
+      $root: {}
+    },
+
+    // mp lifecycle for vue
+    // 生命周期函数--监听页面加载
+    onLoad:function onLoad(query) {
+      //页面加载的时候
+      var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a(App);
+      // 挂载Vue对象到page上
+      this.$vm = app;
+      var rootVueVM = app.$root;
+      rootVueVM.__wxExparserNodeId__ = this.__wxExparserNodeId__//fixed by xxxxxx(createIntersectionObserver)
+      rootVueVM.__wxWebviewId__ = this.__wxWebviewId__//fixed by xxxxxx(createIntersectionObserver)
+      
+      //初始化mp对象
+      if (!rootVueVM.$mp) {
+        rootVueVM.$mp = {};
+      }
+      var mp = rootVueVM.$mp;
+      mp.mpType = 'page';
+      mp.page = this;
+      mp.query = query;
+      mp.status = 'load';
+      //mount 要在 mp.status = 'load';赋值之后，不然mount方法会重复添加微信Page
+      //具体原因参考mpvue核心库源码，_initMP方法
+      app.$mount();
+    },
+
+    handleProxy: function handleProxy(e) {
+      var rootVueVM = getRootVueVm(this);
+      return rootVueVM.$handleProxyWithVue(e)
+    },
+
+    // 生命周期函数--监听页面显示
+    onShow:function onShow() {
+      var rootVueVM = getRootVueVm(this);
+      var mp = rootVueVM.$mp;
+      mp.status = 'show';
+      callHook$1(rootVueVM, 'onShow');
+      //   // 只有页面需要 setData
+      rootVueVM.$nextTick(function () {
+        rootVueVM._initDataToMP();
+      });
+    },
+
+    // 生命周期函数--监听页面初次渲染完成
+    onReady:function onReady() {
+      var rootVueVM = getRootVueVm(this);
+      var mp = rootVueVM.$mp;
+      mp.status = 'ready';
+      callHook$1(rootVueVM, 'onReady');
+    },
+
+    // 生命周期函数--监听页面隐藏
+    onHide: function onHide() {
+      var rootVueVM = getRootVueVm(this);
+      var mp = rootVueVM.$mp;
+      mp.status = 'hide';
+      callHook$1(rootVueVM, 'onHide');
+    },
+
+    // 生命周期函数--监听页面卸载
+    onUnload: function onUnload() {
+      var rootVueVM = getRootVueVm(this);
+      callHook$1(rootVueVM, 'onUnload');
+      rootVueVM.$destroy();
+    },
+
+    // 页面相关事件处理函数--监听用户下拉动作
+    onPullDownRefresh: function onPullDownRefresh() {
+      var rootVueVM = getRootVueVm(this);
+      callHook$1(rootVueVM, 'onPullDownRefresh');
+    },
+
+    // 页面上拉触底事件的处理函数
+    onReachBottom: function onReachBottom() {
+      var rootVueVM = getRootVueVm(this);
+      callHook$1(rootVueVM, 'onReachBottom');
+    },
+
+    // Do something when page scroll
+    onPageScroll: function onPageScroll(options) {
+      var rootVueVM = getRootVueVm(this);
+      callHook$1(rootVueVM, 'onPageScroll', options);
+    },
+
+    // 当前是 tab 页时，点击 tab 时触发
+    onTabItemTap: function onTabItemTap(options) {
+      var rootVueVM = getRootVueVm(this);
+      callHook$1(rootVueVM, 'onTabItemTap', options);
+    },
+		
+    // // 用户点击右上角分享
+    onShareAppMessage: App.onShareAppMessage ?
+      function (options) {
+        var rootVueVM = getRootVueVm(this);
+        return callHook$1(rootVueVM, 'onShareAppMessage', options);
+      } : null,
+
+    //fixed by xxxxxx
+    onNavigationBarButtonTap: function onNavigationBarButtonTap(options) {
+        var rootVueVM = getRootVueVm(this);
+    		callHook$1(rootVueVM, "onNavigationBarButtonTap", options)
+    },
+    onNavigationBarSearchInputChanged: function onNavigationBarSearchInputChanged(options) {
+        var rootVueVM = getRootVueVm(this);
+    		callHook$1(rootVueVM, "onNavigationBarSearchInputChanged", options)
+    },
+    onNavigationBarSearchInputConfirmed: function onNavigationBarSearchInputConfirmed(options) {
+        var rootVueVM = getRootVueVm(this);
+    		callHook$1(rootVueVM, "onNavigationBarSearchInputConfirmed", options)
+    },
+    onNavigationBarSearchInputClicked: function onNavigationBarSearchInputClicked(options) {
+        var rootVueVM = getRootVueVm(this);
+    		callHook$1(rootVueVM, "onNavigationBarSearchInputClicked", options)
+    },
+    onBackPress: function onBackPress(options) {
+        var rootVueVM = getRootVueVm(this);
+    		return callHook$1(rootVueVM, "onBackPress",options)
+    },
+		$getAppWebview:function (e) {
+				return plus.webview.getWebviewById('' + this.__wxWebviewId__)
+		}
+  };
+});
+
+
+/***/ })
+]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

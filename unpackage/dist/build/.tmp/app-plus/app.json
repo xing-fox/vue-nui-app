@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/second/index",
+    "pages/coupon/index",
     "pages/me/index"
   ],
   "window": {
@@ -23,7 +23,7 @@
         "text": "班课"
       },
       {
-        "pagePath": "pages/second/index",
+        "pagePath": "pages/coupon/index",
         "iconPath": "static/coupon.png",
         "selectedIconPath": "static/coupon-1.png",
         "text": "限时优惠"

@@ -148,7 +148,7 @@
           "text": "班课"
         },
         {
-          "pagePath": "pages/second/index",
+          "pagePath": "pages/coupon/index",
           "iconPath": "static/coupon.png",
           "selectedIconPath": "static/coupon-1.png",
           "text": "限时优惠"

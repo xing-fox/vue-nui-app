@@ -6,7 +6,7 @@
 				"navigationBarTitleText": "DueApe班课"
 			}
 		}, {
-			"path": "pages/second/index",
+			"path": "pages/coupon/index",
 			"style": {
 				"navigationBarTitleText": "限时优惠"
 			}
@@ -34,7 +34,7 @@
 	        "selectedIconPath": "static/course-1.png",
 	        "text": "班课"
 	    }, {
-	        "pagePath": "pages/second/index",
+	        "pagePath": "pages/coupon/index",
 	        "iconPath": "static/coupon.png",
 	        "selectedIconPath": "static/coupon-1.png",
 	        "text": "限时优惠"
