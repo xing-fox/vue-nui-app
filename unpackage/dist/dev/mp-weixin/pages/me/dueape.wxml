@@ -1,0 +1,2 @@
+<import src="./dueape.vue.wxml" />
+    <template is="90730f7e" data="{{ ...$root['0'], $root }}"/>

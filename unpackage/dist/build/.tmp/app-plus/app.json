@@ -2,7 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/coupon/index",
-    "pages/me/index"
+    "pages/me/index",
+    "pages/order/index",
+    "pages/me/wallet",
+    "pages/me/coupon",
+    "pages/me/data",
+    "pages/me/dueape"
   ],
   "window": {
     "navigationBarTextStyle": "black",

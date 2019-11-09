@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
 /* 0 */,
 /* 1 */
-/*!***************************************************************!*\
-  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/pages.json ***!
-  \***************************************************************/
+/*!**************************************************!*\
+  !*** E:/workspace/uniapp/vue-nui-app/pages.json ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7951,9 +7951,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 11 */
-/*!******************************************************************!*\
-  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/api.js ***!
-  \******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/workspace/uniapp/vue-nui-app/config/api.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7973,9 +7973,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 12 */
-/*!********************************************************************!*\
-  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/fetch.js ***!
-  \********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/workspace/uniapp/vue-nui-app/config/fetch.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

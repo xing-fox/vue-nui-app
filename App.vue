@@ -2,6 +2,10 @@
 import { RequestApi } from 'config/api'
 import { GetAllSchoolUrl } from 'config/fetch'
 export default {
+	/**
+	 * @storage_school 所有学校
+	 *  
+	 */
 	async onLaunch () {
 		const Data = await RequestApi(`${GetAllSchoolUrl}`, 'POST', {
 			pageSize: 200
