@@ -33,6 +33,8 @@
 					</view>
 				</view>
 			</view>
+			<view v-if="getMoreData" class="data">正在加载数据...</view>
+			<view v-else class="data">没有更多数据了~</view>
 		</scroll-view>
 	</view>
 </template>
@@ -45,6 +47,7 @@ export default {
 		return {
 			AllData: [],
 			pageNum: 1,
+			getMoreData: true, // 获取更多数据
 			AllDataLength: 0, // 数据总长度
 			className: '班课类型', // 班课类型
 			collegeName: '学校', // 学校名称
@@ -97,17 +100,31 @@ export default {
 				this.pageNum += 1
 				const Data = await this.getData();
 				this.AllData = this.AllData.concat(Data.data.results.data);
+			} else {
+				this.getMoreData = false
 			}
 		},
+		/**
+		 * 选择学校
+		 */
 		choiseCollege (e) {
 			if (e.detail.column === 0) this.schoolArray.splice(1, 1, [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value]);
 		},
+		/**
+		 * 改变学校
+		 */
 		changeCollege (e) {
 			this.collegeName = [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value[0]][e.detail.value[1]]
 		},
+		/**
+		 * 选择课程
+		 */
 		choiseClass (e) {
 			if (e.detail.column === 0) this.classArray.splice(1, 1, [['全部'], this.classUnMealData, this.classMealData][e.detail.value]);
 		},
+		/**
+		 * 改变学校
+		 */
 		changeClass (e) {
 			this.className = [['全部'], this.classUnMealData, this.classMealData][e.detail.value[0]][e.detail.value[1]]
 		}
@@ -250,5 +267,11 @@ export default {
 	font-size: 32rpx;
 	line-height: 34rpx;
 	margin-right: 10rpx;
+}
+.data {
+	color: #999;
+	font-size: 28rpx;
+	width: 100%;
+	text-align: center;
 }
 </style>

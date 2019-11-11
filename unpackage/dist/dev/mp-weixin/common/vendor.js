@@ -1,9 +1,9 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
 /* 0 */,
 /* 1 */
-/*!**************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/pages.json ***!
-  \**************************************************/
+/*!***************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/pages.json ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6396,7 +6396,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7951,9 +7951,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 11 */
-/*!*****************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/config/api.js ***!
-  \*****************************************************/
+/*!******************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/api.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7973,9 +7973,9 @@ if (hadRuntime) {
 
 /***/ }),
 /* 12 */
-/*!*******************************************************!*\
-  !*** E:/workspace/uniapp/vue-nui-app/config/fetch.js ***!
-  \*******************************************************/
+/*!********************************************************************!*\
+  !*** C:/Users/xing_/Desktop/nui-app资料/vue-nui-app/config/fetch.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
