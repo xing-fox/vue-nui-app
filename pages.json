@@ -6,7 +6,7 @@
 				"navigationBarTitleText": "DueApe班课"
 			}
 		}, {
-			"path": "pages/coupon/index",
+			"path": "pages/recharge/index",
 			"style": {
 				"navigationBarTitleText": "限时优惠"
 			}
@@ -40,6 +40,14 @@
 			"style": {
 				"navigationBarTitleText": "关于DueApe"
 			}
+		}, {
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录DueApe",
+				"app-plus": {
+				    "softinputNavBar": "none"
+				}
+			}
 		}
 	],
 	"globalStyle": {
@@ -59,7 +67,7 @@
 	        "selectedIconPath": "static/course-1.png",
 	        "text": "班课"
 	    }, {
-	        "pagePath": "pages/coupon/index",
+	        "pagePath": "pages/recharge/index",
 	        "iconPath": "static/coupon.png",
 	        "selectedIconPath": "static/coupon-1.png",
 	        "text": "限时优惠"

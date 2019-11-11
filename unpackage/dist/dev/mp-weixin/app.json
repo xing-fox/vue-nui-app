@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/coupon/index",
+    "pages/recharge/index",
     "pages/me/index",
     "pages/order/index",
     "pages/me/wallet",
     "pages/me/coupon",
     "pages/me/data",
-    "pages/me/dueape"
+    "pages/me/dueape",
+    "pages/login/index"
   ],
   "subPackages": [],
   "window": {
@@ -30,7 +31,7 @@
         "text": "班课"
       },
       {
-        "pagePath": "pages/coupon/index",
+        "pagePath": "pages/recharge/index",
         "iconPath": "static/coupon.png",
         "selectedIconPath": "static/coupon-1.png",
         "text": "限时优惠"
@@ -44,5 +45,5 @@
     ]
   },
   "permission": {},
-  "sitemapLocation": "sitemap88.json"
+  "sitemapLocation": "sitemap11.json"
 }

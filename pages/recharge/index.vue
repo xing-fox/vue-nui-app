@@ -4,13 +4,13 @@
 			<image class="header-image" src="/static/recharge/header.png"></image>
 			<view class="header-main">
 				<text>当前余额</text>
-				<text class="money">￥60</text>
+				<text class="money">￥--</text>
 			</view>
 		</view>
 		<view class="main">
 			<text class="title">特惠专区</text>
 			<view class="main-list">
-				<view class="list" v-for="(item, index) in rechargeData" :key="item.couponId">
+				<view class="list" v-for="(item, index) in rechargeData" :key="item.couponId" @click="rechargeIndex = index">
 					<image v-if="rechargeIndex !== index" class="main-list-image" src="/static/recharge/list-bg.png"></image>
 					<image v-else class="main-list-image" src="/static/recharge/list-bg-select.png"></image>
 					<view class="list-data">
@@ -20,7 +20,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="footer">立即以￥1999元充值</view>
+		<view v-if="rechargeData[rechargeIndex]" @click="rechargeFunc" class="footer">立即以￥{{ rechargeData[rechargeIndex].rechargeFee }}元充值</view>
 	</view>
 </template>
 
@@ -38,7 +38,13 @@ export default {
 		const Data = await RequestApi(`${GetIndexCoupon}`, 'GET', {});
 		this.rechargeData = Data.data.data;
 	},
-	methods: {}
+	methods: {
+		rechargeFunc() {
+			uni.navigateTo({
+			    url: '/pages/login/index'
+			});
+		}
+	}
 };
 </script>
 
@@ -76,66 +82,66 @@ export default {
 			}
 		}
 	}
-}
-.main {
-	width: 100%;
-}
-.main .title {
-	color: #000;
-	font-size: 28rpx;
-	font-weight: 800;
-	line-height: 70rpx;
-}
-.main-list {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-}
-.main-list .list {
-	width: 340rpx;
-	height: 180rpx;
-	margin-bottom: 24rpx;
-	position: relative;
-}
-.main-list-image {
-	width: 100%;
-	height: 100%;
-}
-.list-data {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	display: flex;
-	text-align: center;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-.data-price {
-	color: #9e6b09;
-	font-size: 48rpx;
-	font-weight: bold;
-	margin-bottom: 25rpx;
-}
-.data-intro {
-	color: #797979;
-	font-size: 26rpx;
-}
-.footer {
-	color: #fff;
-	font-size: 32rpx;
-	width: 100%;
-	height: 90rpx;
-	text-align: center;
-	line-height: 90rpx;
-	border-radius: 10rpx;
-	background: linear-gradient(to right, #ff5d04, #ff9704);
-	&:active {
-		background: #ff5d04;
+	.main {
+		width: 100%;
+		.title {
+			color: #000;
+			font-size: 28rpx;
+			font-weight: 800;
+			line-height: 70rpx;
+		}
+		.main-list {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			.list {
+				width: 340rpx;
+				height: 180rpx;
+				margin-bottom: 24rpx;
+				position: relative;
+				.main-list-image {
+					width: 100%;
+					height: 100%;
+				}
+				.list-data {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					display: flex;
+					text-align: center;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					.data-price {
+						color: #9e6b09;
+						font-size: 48rpx;
+						font-weight: bold;
+						margin-bottom: 25rpx;
+					}
+					.data-intro {
+						color: #797979;
+						font-size: 26rpx;
+					}
+				}
+			}
+		}
+	}
+	.footer {
+		color: #fff;
+		font-size: 32rpx;
+		width: 100%;
+		height: 90rpx;
+		text-align: center;
+		line-height: 90rpx;
+		border-radius: 10rpx;
+		background: linear-gradient(to right, #ff5d04, #ff9704);
+		&:active {
+			background: #ff5d04;
+		}
 	}
 }
 </style>

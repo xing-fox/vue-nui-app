@@ -43,33 +43,38 @@
 import { RequestApi } from 'config/api';
 import { GetAllClassUrl } from 'config/fetch';
 export default {
-	data () {
+	data() {
 		return {
 			AllData: [],
 			pageNum: 1,
+			collegeId: undefined, // 学校字段
+			courseType: undefined, // 班课类型
 			getMoreData: true, // 获取更多数据
 			AllDataLength: 0, // 数据总长度
 			className: '班课类型', // 班课类型
 			collegeName: '学校', // 学校名称
 			schoolAUSData: [], // 澳洲学校
 			schoolUSAData: [], // 美国学校
+			allSchoolData: [], // 所有学校信息
 			schoolArray: [['全部', '澳洲', '美国'], ['全部']],
 			schoolIndex: [0, 0],
 			classMealData: ['全学期课业解析班'],
-			classUnMealData: ['作业讲解班', '周课知识点班', '其中冲刺班', '期末冲刺班', '体验班'],
+			classUnMealData: ['作业讲解班', '周课知识点班', '期中冲刺班', '期末冲刺班', '体验班'],
 			classArray: [['全部', '非套餐', '套餐'], ['全部']],
 			classIndex: [0, 0]
 		};
 	},
-	async onLoad () {
+	async onLoad() {
 		const self = this;
 		const Data = await this.getData();
 		this.AllData = Data.data.results.data;
 		this.AllDataLength = Data.data.results.pages;
+		this.getMoreData = Number(Data.data.results.pageNum) !== 1;
 		// 获取学校信息
 		uni.getStorage({
 			key: 'storage_school',
 			success: function(res) {
+				self.allSchoolData = res.data.data.results.data;
 				res.data.data.results.data.map(item => {
 					if (Number(item.countryId) === 1) self.schoolAUSData.push(item.collegeName);
 					if (Number(item.countryId) === 2) self.schoolUSAData.push(item.collegeName);
@@ -81,52 +86,107 @@ export default {
 		/**
 		 * 获取数据
 		 */
-		getData () {
+		getData() {
 			return RequestApi(`${GetAllClassUrl}`, 'POST', {
 				order: 'desc',
 				sortField: 'class_id',
 				pageSize: 10,
 				pageNum: this.pageNum,
 				displayFlag: 1,
-				courseType: undefined,
-				collegeId: undefined
-			})
+				courseType: this.courseType,
+				collegeId: this.collegeId
+			});
 		},
 		/**
 		 * 添加数据
 		 */
-		async addData () {
+		async addData() {
 			if (this.AllDataLength > this.pageNum) {
-				this.pageNum += 1
+				this.pageNum += 1;
 				const Data = await this.getData();
 				this.AllData = this.AllData.concat(Data.data.results.data);
 			} else {
-				this.getMoreData = false
+				this.getMoreData = false;
 			}
 		},
 		/**
 		 * 选择学校
 		 */
-		choiseCollege (e) {
+		choiseCollege(e) {
 			if (e.detail.column === 0) this.schoolArray.splice(1, 1, [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value]);
 		},
 		/**
 		 * 改变学校
 		 */
-		changeCollege (e) {
-			this.collegeName = [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value[0]][e.detail.value[1]]
+		changeCollege(e) {
+			this.setData();
+			this.collegeName = [['全部'], this.schoolAUSData, this.schoolUSAData][e.detail.value[0]][e.detail.value[1]];
+			if (this.collegeName === '全部') {
+				this.collegeId = undefined;
+			} else {
+				this.allSchoolData.map(item => {
+					if (item.collegeName === this.collegeName) this.collegeId = item.collegeId;
+				});
+			}
+			this.getData().then(res => {
+				this.AllData = res.data.results.data;
+				this.AllDataLength = res.data.results.pages;
+				this.getMoreData = Number(res.data.results.pageNum) !== 1;
+			});
 		},
 		/**
 		 * 选择课程
 		 */
-		choiseClass (e) {
+		choiseClass(e) {
 			if (e.detail.column === 0) this.classArray.splice(1, 1, [['全部'], this.classUnMealData, this.classMealData][e.detail.value]);
 		},
 		/**
-		 * 改变学校
+		 * 改变课程
 		 */
-		changeClass (e) {
-			this.className = [['全部'], this.classUnMealData, this.classMealData][e.detail.value[0]][e.detail.value[1]]
+		changeClass(e) {
+			this.setData();
+			this.className = [['全部'], this.classUnMealData, this.classMealData][e.detail.value[0]][e.detail.value[1]];
+			[{
+				name: '全部',
+				type: undefined
+			},
+			{
+				name: '作业讲解班',
+				type: 1
+			},
+			{
+				name: '周课知识点班',
+				type: 2
+			},
+			{
+				name: '期中冲刺班',
+				type: 3
+			},
+			{
+				name: '期末冲刺班',
+				type: 4
+			},
+			{
+				name: '体验班',
+				type: 5
+			},
+			{
+				name: '全学期课业解析班',
+				type: 6
+			}].map(item => {
+				if (item.name === this.className) this.courseType = item.type;
+			});
+			this.getData().then(res => {
+				this.AllData = res.data.results.data;
+				this.AllDataLength = res.data.results.pages;
+				this.getMoreData = Number(res.data.results.pageNum) !== 1;
+			});
+		},
+		/**
+		 * reset data
+		 */
+		setData() {
+			[this.pageNum, this.AllData, this.getMoreData] = [1, [], true];
 		}
 	}
 };
@@ -138,8 +198,7 @@ export default {
 	flex-direction: column;
 	width: 100%;
 	line-height: 1;
-	padding-top: 90rpx;
-	padding-bottom: 25rpx;
+	padding-top: 120rpx;
 	background: #f5f5f5;
 	.content-picker {
 		height: 70rpx;
@@ -198,9 +257,8 @@ export default {
 		}
 	}
 	.content-main {
-		height: calc(100vh - 90rpx);
+		height: calc(100vh - 120rpx);
 		.content-list {
-			margin-top: 30rpx;
 			margin-right: 25rpx;
 			margin-left: 25rpx;
 			margin-bottom: 30rpx;
@@ -272,6 +330,8 @@ export default {
 	color: #999;
 	font-size: 28rpx;
 	width: 100%;
+	line-height: 30rpx;
+	padding-bottom: 20rpx;
 	text-align: center;
 }
 </style>
