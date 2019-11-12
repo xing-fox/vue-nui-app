@@ -11,9 +11,9 @@
 			</picker>
 		</view>
 		<scroll-view class="content-main" scroll-y="true" @scrolltolower="addData">
-			<view class="content-list" v-for="item in AllData" :key="item.classId">
+			<view class="content-list" v-for="item in AllData" :key="item.classId" @click="classDetailsFunc(item.classId)">
 				<view class="list">
-					<image class="list-img" mode="aspectFill" src="https://dueape-nation-1255328906.cos.ap-singapore.myqcloud.com/image/2019103006105513.jpg"></image>
+					<image class="list-img" mode="aspectFill" :src="'https://'+ item.iconPath"></image>
 					<view class="list-main">
 						<view class="list-title">{{ item.title }}</view>
 						<view class="list-main-content">
@@ -183,6 +183,14 @@ export default {
 			});
 		},
 		/**
+		 * 
+		 */
+		classDetailsFunc(id) {
+			uni.navigateTo({
+			    url: `/pages/index/details?id=${id}`
+			});
+		},
+		/**
 		 * reset data
 		 */
 		setData() {
@@ -197,8 +205,10 @@ export default {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	min-height: 100vh;
 	line-height: 1;
-	padding-top: 120rpx;
+	padding-top: 100rpx;
+	box-sizing: border-box;
 	background: #f5f5f5;
 	.content-picker {
 		height: 70rpx;
@@ -224,25 +234,25 @@ export default {
 			background: #e8e8e8;
 			position: relative;
 			&.picker-school {
-				width: 280rpx;
+				width: 380rpx;
 				height: 70rpx;
 			}
 			&.picker-course {
-				width: 400rpx;
+				width: 300rpx;
 				height: 70rpx;
 			}
 			.picker-text {
 				height: 70rpx;
 				line-height: 70rpx;
 				display: inline-block;
-				overflow: hiddne;
+				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				&.school-text {
-					width: 200rpx;
+					width: 300rpx;
 				}
 				&.course-text {
-					width: 320rpx;
+					width: 220rpx;
 				}
 			}
 			.picker-img {
@@ -257,8 +267,9 @@ export default {
 		}
 	}
 	.content-main {
-		height: calc(100vh - 120rpx);
+		height: calc(100vh - 100rpx);
 		.content-list {
+			margin-top: 20rpx;
 			margin-right: 25rpx;
 			margin-left: 25rpx;
 			margin-bottom: 30rpx;
@@ -331,7 +342,8 @@ export default {
 	font-size: 28rpx;
 	width: 100%;
 	line-height: 30rpx;
-	padding-bottom: 20rpx;
+	margin-top: 25rpx;
+	padding-bottom: 25rpx;
 	text-align: center;
 }
 </style>

@@ -43,10 +43,12 @@
 		}, {
 			"path": "pages/login/index",
 			"style": {
-				"navigationBarTitleText": "登录DueApe",
-				"app-plus": {
-				    "softinputNavBar": "none"
-				}
+				"navigationBarTitleText": "登录DueApe"
+			}
+		}, {
+			"path": "pages/index/details",
+			"style": {
+				"navigationBarTitleText": "班课详情"
 			}
 		}
 	],

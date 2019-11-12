@@ -1,0 +1,256 @@
+.content {
+  width: 100%;
+  line-height: 1;
+  min-height: 100vh;
+  padding: 0 0 105rpx 0;
+  background: #f5f5f5;
+  position: relative;
+}
+.content .header {
+  width: 100%;
+  height: 220rpx;
+  padding: 23rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.content .header .hea-image {
+  width: 216rpx;
+  height: 172rpx;
+  will-change: transform;
+}
+.content .header .hea-intro {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 5rpx 0 10rpx;
+  margin: 0 0 0 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.content .header .hea-intro .title {
+  color: #000;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+.content .header .hea-intro .main {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.content .header .hea-intro .main .info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.content .header .hea-intro .main .info .info-image {
+  width: 24rpx;
+  height: 24rpx;
+  will-change: transform;
+}
+.content .header .hea-intro .main .info .info-text {
+  color: #999;
+  font-size: 28rpx;
+  line-height: 30rpx;
+}
+.content .header .hea-intro .main .info .info-text .text-color {
+  color: #ff9704;
+  margin: 0 5rpx 0 10rpx;
+}
+.content .list {
+  padding: 0 23rpx;
+  margin: 15rpx 0 0 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #fff;
+}
+.content .list .item {
+  width: 100%;
+  line-height: 90rpx;
+  border-bottom: 1px solid #eee;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.content .list .item:nth-last-child(1) {
+  border-bottom: none;
+}
+.content .list .item .item-image {
+  width: 50rpx;
+  height: 50rpx;
+  will-change: transform;
+}
+.content .list .item .item-main {
+  color: #000;
+  font-size: 26rpx;
+  margin: 0 0 0 10rpx;
+}
+.content .list .item .item-main .text-color {
+  color: #ff9704;
+  text-decoration: underline;
+}
+.content .infor {
+  margin: 15rpx 0 0 0;
+  padding: 30rpx 25rpx;
+  background: #fff;
+}
+.content .infor .title {
+  color: #000;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.content .infor .infor-details {
+  text-indent: 30rpx;
+  margin: 25rpx 0 0 0;
+}
+.content .infor .infor-details .name {
+  color: #000;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.content .infor .infor-details .no-data {
+  color: #999;
+  font-size: 26rpx;
+  line-height: 34rpx;
+  margin: 10rpx 0 0 0;
+}
+.content .tab {
+  width: 100%;
+  margin: 15rpx 0 0 0;
+  background: #fff;
+}
+.content .tab .tab-nav {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.content .tab .tab-nav .item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #7d7e80;
+  font-size: 28rpx;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.content .tab .tab-nav .item.active {
+  color: #323233;
+  border-bottom: 3px solid #ff9704;
+}
+.content .tab .main {
+  width: 100%;
+  padding: 23rpx 5vw;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.content .footer {
+  height: 90rpx;
+  padding: 0 0 0 25rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.content .footer .price {
+  color: #ff5d04;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.content .footer .submit {
+  color: #fff;
+  font-size: 32rpx;
+  width: 230rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, right top, from(#ff5d04), to(#ff9704));
+  background: -o-linear-gradient(left, #ff5d04, #ff9704);
+  background: linear-gradient(to right, #ff5d04, #ff9704);
+}
+

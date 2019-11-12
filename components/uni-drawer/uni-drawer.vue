@@ -8,6 +8,7 @@
       class="uni-drawer__mask"
       @tap="close" />
     <view class="uni-drawer__content"><slot /></view>
+		
   </view>
 </template>
 
@@ -85,19 +86,17 @@ export default {
 </script>
 
 <style lang="scss">
-$drawer-width: 84%;
+$drawer-width: 86%;
 
 .uni-drawer {
 	display: block;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	overflow: hidden;
-	visibility: hidden;
+	overflow: scroll;
 	z-index: 999;
-	height: 100%;
 
 	&.uni-drawer--right {
 		.uni-drawer__content {
@@ -137,9 +136,8 @@ $drawer-width: 84%;
 		position: absolute;
 		top: 0;
 		left: 0;
+		bottom: 0;
 		width: $drawer-width;
-		height: 100%;
-		overflow: auto;
 		background: $uni-bg-color;
 		transition: all 0.3s ease-out;
 		transform: translatex(-100%);

@@ -11,3 +11,7 @@ export const GetAllSchoolUrl = `${Api}/dueape/college/index`
  * 获取充值优惠券
  */
 export const GetIndexCoupon = `${Api}/dueape/coupon/getIndexCoupon`
+/**
+ * 获取班课详情
+ */
+export const GetAllClassDetailsUrl = `${Api}/dueape/class/view`

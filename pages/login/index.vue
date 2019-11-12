@@ -14,30 +14,30 @@
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/class.png"></image>
-					<input class="value" focus placeholder="请选择您的专业" />
+					<input class="value" placeholder="请选择您的专业" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/name.png"></image>
-					<input class="value" focus placeholder="请输入您的姓名" />
+					<input class="value" placeholder="请输入您的姓名" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/weixin.png"></image>
-					<input class="value" focus placeholder="请输入您的微信号" />
+					<input class="value" placeholder="请输入您的微信号" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/phone.png"></image>
 					<view class="code" @click="choiseCodeStatus=true">+{{ codeNumber }}</view>
-					<input class="phone" focus placeholder="请输入您的手机号" />
+					<input class="phone" placeholder="请输入您的手机号" />
 				</view>
 				<view class="list">
-					<input class="code" focus placeholder="请输入验证码" />
+					<input class="code" placeholder="请输入验证码" />
 					<view class="getCode">获取验证码</view>
 				</view>
 			</view>
 			<view @click="nextFunc" class="footer">下一步</view>
 		</view>
 		<uni-drawer :visible="choiseCodeStatus" mode="right" @close="choiseCodeStatus=false">
-			<view class="drawer">
+			<scroll-view class="drawer" scroll-y="true" show-scrollbar="true">
 				<view class="drawer-list">
 					<view class="title">热门</view>
 					<view class="main" v-for="(item, index) in codeCity.hotList" :key="index" @click="changeCode(item.value)">
@@ -52,7 +52,7 @@
 						<view class="code">+{{ list.value }}</view>
 					</view>
 				</view>
-			</view>
+			</scroll-view>
 		</uni-drawer>
 	</view>
 </template>
@@ -122,7 +122,7 @@ export default {
 <style lang="less">
 .content {
 	width: 100%;
-	min-height: calc(100vh - 70rpx);
+	min-height: 100vh;
 	line-height: 1;
 	background: #f5f5f5;
 	position: relative;
@@ -244,7 +244,10 @@ export default {
 		}
 	}
 	.drawer {
-		padding: 30rpx;
+		height: 100%;
+		padding: 30rpx 20rpx 30rpx 30rpx;
+		overflow-y: scroll;
+		box-sizing: border-box;
 		.drawer-list {
 			width: 100%;
 			text-align: center;

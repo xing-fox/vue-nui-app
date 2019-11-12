@@ -10,7 +10,7 @@
 		<view class="main">
 			<text class="title">特惠专区</text>
 			<view class="main-list">
-				<view class="list" v-for="(item, index) in rechargeData" :key="item.couponId" @click="rechargeIndex = index">
+				<view class="list" v-for="(item, index) in rechargeData" :key="item.couponId" @click="changeRecharge(index)">
 					<image v-if="rechargeIndex !== index" class="main-list-image" src="/static/recharge/list-bg.png"></image>
 					<image v-else class="main-list-image" src="/static/recharge/list-bg-select.png"></image>
 					<view class="list-data">
@@ -41,8 +41,11 @@ export default {
 	methods: {
 		rechargeFunc() {
 			uni.navigateTo({
-			    url: '/pages/login/index'
+				url: '/pages/login/index'
 			});
+		},
+		changeRecharge(eq) {
+			this.rechargeIndex = eq;
 		}
 	}
 };

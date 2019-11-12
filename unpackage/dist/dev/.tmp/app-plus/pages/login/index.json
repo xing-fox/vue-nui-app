@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "登录DueApe",
+  "usingComponents": {
+    "uni-drawer": "/components/uni-drawer/uni-drawer"
+  }
+}
