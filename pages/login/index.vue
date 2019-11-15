@@ -14,24 +14,25 @@
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/class.png"></image>
-					<input class="value" placeholder="请选择您的专业" />
+					<input v-model="form.major" class="value" placeholder="请选择您的专业" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/name.png"></image>
-					<input class="value" placeholder="请输入您的姓名" />
+					<input v-model="form.customerName" class="value" placeholder="请输入您的姓名" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/weixin.png"></image>
-					<input class="value" placeholder="请输入您的微信号" />
+					<input v-model="form.wxId" class="value" placeholder="请输入您的微信号" />
 				</view>
 				<view class="list">
 					<image class="icon" src="/static/login/phone.png"></image>
-					<view class="code" @click="choiseCodeStatus=true">+{{ codeNumber }}</view>
-					<input class="phone" placeholder="请输入您的手机号" />
+					<view class="code" @click="choiseCodeStatus=true">+{{ form.areaCode }}</view>
+					<input v-model="form.mobile" type="number" class="phone" placeholder="请输入您的手机号" />
 				</view>
 				<view class="list">
-					<input class="code" placeholder="请输入验证码" />
-					<view class="getCode">获取验证码</view>
+					<input v-model="form.smsCode" type="number" :disabled="!setTimeStatus" class="code" placeholder="请输入验证码" />
+					<view v-if="!setTimeStatus" class="getCode" @click="getCodeFunc">获取验证码</view>
+					<view v-else class="getCode codeTime">{{ setTime }}s</view>
 				</view>
 			</view>
 			<view @click="nextFunc" class="footer">下一步</view>
@@ -58,22 +59,33 @@
 </template>
 
 <script>
-// import { RequestApi } from 'config/api';
-// import { GetAllClassUrl } from 'config/fetch';
+import { RequestApi } from 'config/api';
+import { GeCode, WxRegister } from 'config/fetch';
 import City from './country.js';
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 export default {
 	data() {
 		return {
 			setTime: 59, // 倒计时
+			setTimeFunc: '', // 计时器
+			setTimeStatus: false, // 倒计时状态
 			codeCity: City, // 区域code
-			codeNumber: '86', // 区号
+			allSchoolData: [], // 所有学校信息
 			schoolArray: [['澳洲', '美国']],
 			schoolAUSData: [], // 澳洲学校
 			schoolUSAData: [], // 美国学校
 			schoolIndex: [0, 0],
 			collegeName: '请选择您的学校',
-			choiseCodeStatus: false
+			choiseCodeStatus: false,
+			form: {
+				wxId: '', // 微信id
+				wxOpenId: '', // openid
+				major: '', // 专业
+				graduateSchool: '', // 用户毕业院校
+				areaCode: '86', // 用户手机区号
+				mobile: '', // 用户手机号
+				smsCode: '' // 短信验证码
+			} // 表单数据
 		};
 	},
 	onLoad() {
@@ -95,7 +107,44 @@ export default {
 		uniDrawer
 	},
 	methods: {
-		nextFunc() {},
+		nextFunc() {
+			const self = this
+			uni.getStorage({
+				key: 'wx_login_data',
+				success: function(res) {
+					self.form.wxOpenId = JSON.parse(res.data).authResult.openid
+				},
+				fail: function() {
+					uni.getProvider({
+						service: 'oauth',
+						success: function (res) {
+							if (~res.provider.indexOf('weixin')) {
+								uni.login({
+									provider: 'weixin',
+									success: function (loginRes) {
+										uni.setStorageSync('wx_login_data', JSON.stringify(loginRes))
+									}
+								});
+							}
+						}
+					});
+				},
+				complete: function() {
+					RequestApi(`${WxRegister}`, 'POST', JSON.parse(JSON.stringify(self.form))).then(res => {
+						if (Number(res.data.statusCode) === 0) {
+							uni.showToast({
+								title: '保存成功，请继续下单购课!'
+							});
+							uni.navigateBack();
+						} else {
+							uni.showToast({
+								title: '信息录入失败!'
+							});
+						}
+					})
+				}
+			});
+		},
 		/**
 		 * 选择学校
 		 */
@@ -107,13 +156,44 @@ export default {
 		 */
 		changeCollege(e) {
 			this.collegeName = [this.schoolAUSData, this.schoolUSAData][e.detail.value[0]][e.detail.value[1]];
+			this.allSchoolData.map(item => {
+				if (this.collegeName === item.collegeName) this.form.graduateSchool = item.collegeId
+			})
 		},
 		/**
 		 * 选择区号
 		 */
 		changeCode (data) {
-			this.codeNumber = data
+			this.form.areaCode = data
 			this.choiseCodeStatus = false
+		},
+		/**
+		 * 获取验证码
+		 */
+		getCodeFunc () {
+			RequestApi(`${GeCode}`, 'POST', {
+				nation: this.form.areaCode,
+				tel: this.form.mobile
+			}).then(res => {
+				if (res.data.code === 0) {
+					uni.showToast({
+						title: res.data.data
+					})
+					this.setTimeStatus = true
+					this.setTimeFunc = setInterval(() => {
+						this.setTime--
+						if (this.setTime === 1) {
+							this.setTimeStatus = false
+							this.setTime = 59
+							clearInterval(this.setTimeFunc)
+						}
+					}, 1000)
+				} else {
+					uni.showToast({
+						title: res.data.message
+					})
+				}
+			})
 		}
 	}
 };
@@ -190,6 +270,9 @@ export default {
 					width: 160rpx;
 					text-align: right;
 					position: relative;
+					&.codeTime {
+						text-align: center;
+					}
 					&::before {
 						content: '';
 						width: 2rpx;

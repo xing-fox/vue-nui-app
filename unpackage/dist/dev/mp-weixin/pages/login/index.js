@@ -137,9 +137,87 @@ var render = function() {
             ],
             1
           ),
-          _vm._m(0),
-          _vm._m(1),
-          _vm._m(2),
+          _c("view", { staticClass: "list" }, [
+            _c("image", {
+              staticClass: "icon",
+              attrs: { src: "/static/login/class.png" }
+            }),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.major,
+                  expression: "form.major"
+                }
+              ],
+              staticClass: "value",
+              attrs: { placeholder: "请选择您的专业", eventid: "7e5fd8f4-1" },
+              domProps: { value: _vm.form.major },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.form.major = $event.target.value
+                }
+              }
+            })
+          ]),
+          _c("view", { staticClass: "list" }, [
+            _c("image", {
+              staticClass: "icon",
+              attrs: { src: "/static/login/name.png" }
+            }),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.customerName,
+                  expression: "form.customerName"
+                }
+              ],
+              staticClass: "value",
+              attrs: { placeholder: "请输入您的姓名", eventid: "7e5fd8f4-2" },
+              domProps: { value: _vm.form.customerName },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.form.customerName = $event.target.value
+                }
+              }
+            })
+          ]),
+          _c("view", { staticClass: "list" }, [
+            _c("image", {
+              staticClass: "icon",
+              attrs: { src: "/static/login/weixin.png" }
+            }),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.wxId,
+                  expression: "form.wxId"
+                }
+              ],
+              staticClass: "value",
+              attrs: { placeholder: "请输入您的微信号", eventid: "7e5fd8f4-3" },
+              domProps: { value: _vm.form.wxId },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.form.wxId = $event.target.value
+                }
+              }
+            })
+          ]),
           _c("view", { staticClass: "list" }, [
             _c("image", {
               staticClass: "icon",
@@ -149,27 +227,88 @@ var render = function() {
               "view",
               {
                 staticClass: "code",
-                attrs: { eventid: "7e5fd8f4-1" },
+                attrs: { eventid: "7e5fd8f4-4" },
                 on: {
                   click: function($event) {
                     _vm.choiseCodeStatus = true
                   }
                 }
               },
-              [_vm._v("+" + _vm._s(_vm.codeNumber))]
+              [_vm._v("+" + _vm._s(_vm.form.areaCode))]
             ),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.mobile,
+                  expression: "form.mobile"
+                }
+              ],
               staticClass: "phone",
-              attrs: { focus: "", placeholder: "请输入您的手机号" }
+              attrs: {
+                type: "number",
+                placeholder: "请输入您的手机号",
+                eventid: "7e5fd8f4-5"
+              },
+              domProps: { value: _vm.form.mobile },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.form.mobile = $event.target.value
+                }
+              }
             })
           ]),
-          _vm._m(3)
+          _c("view", { staticClass: "list" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.smsCode,
+                  expression: "form.smsCode"
+                }
+              ],
+              staticClass: "code",
+              attrs: {
+                type: "number",
+                disabled: !_vm.setTimeStatus,
+                placeholder: "请输入验证码",
+                eventid: "7e5fd8f4-6"
+              },
+              domProps: { value: _vm.form.smsCode },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.form.smsCode = $event.target.value
+                }
+              }
+            }),
+            !_vm.setTimeStatus
+              ? _c(
+                  "view",
+                  {
+                    staticClass: "getCode",
+                    attrs: { eventid: "7e5fd8f4-7" },
+                    on: { click: _vm.getCodeFunc }
+                  },
+                  [_vm._v("获取验证码")]
+                )
+              : _c("view", { staticClass: "getCode codeTime" }, [
+                  _vm._v(_vm._s(_vm.setTime) + "s")
+                ])
+          ])
         ]),
         _c(
           "view",
           {
             staticClass: "footer",
-            attrs: { eventid: "7e5fd8f4-2" },
+            attrs: { eventid: "7e5fd8f4-8" },
             on: { click: _vm.nextFunc }
           },
           [_vm._v("下一步")]
@@ -181,7 +320,7 @@ var render = function() {
           attrs: {
             visible: _vm.choiseCodeStatus,
             mode: "right",
-            eventid: "7e5fd8f4-5",
+            eventid: "7e5fd8f4-11",
             mpcomid: "7e5fd8f4-0"
           },
           on: {
@@ -192,8 +331,11 @@ var render = function() {
         },
         [
           _c(
-            "view",
-            { staticClass: "drawer" },
+            "scroll-view",
+            {
+              staticClass: "drawer",
+              attrs: { "scroll-y": "true", "show-scrollbar": "true" }
+            },
             [
               _c(
                 "view",
@@ -206,7 +348,7 @@ var render = function() {
                       {
                         key: index,
                         staticClass: "main",
-                        attrs: { eventid: "7e5fd8f4-3-" + index },
+                        attrs: { eventid: "7e5fd8f4-9-" + index },
                         on: {
                           click: function($event) {
                             _vm.changeCode(item.value)
@@ -240,7 +382,7 @@ var render = function() {
                         {
                           key: eq,
                           staticClass: "main",
-                          attrs: { eventid: "7e5fd8f4-4-" + index + "-" + eq },
+                          attrs: { eventid: "7e5fd8f4-10-" + index + "-" + eq },
                           on: {
                             click: function($event) {
                               _vm.changeCode(list.value)
@@ -264,71 +406,14 @@ var render = function() {
             ],
             2
           )
-        ]
+        ],
+        1
       )
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "list" }, [
-      _c("image", {
-        staticClass: "icon",
-        attrs: { src: "/static/login/class.png" }
-      }),
-      _c("input", {
-        staticClass: "value",
-        attrs: { focus: "", placeholder: "请选择您的专业" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "list" }, [
-      _c("image", {
-        staticClass: "icon",
-        attrs: { src: "/static/login/name.png" }
-      }),
-      _c("input", {
-        staticClass: "value",
-        attrs: { focus: "", placeholder: "请输入您的姓名" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "list" }, [
-      _c("image", {
-        staticClass: "icon",
-        attrs: { src: "/static/login/weixin.png" }
-      }),
-      _c("input", {
-        staticClass: "value",
-        attrs: { focus: "", placeholder: "请输入您的微信号" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "list" }, [
-      _c("input", {
-        staticClass: "code",
-        attrs: { focus: "", placeholder: "请输入验证码" }
-      }),
-      _c("view", { staticClass: "getCode" }, [_vm._v("获取验证码")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -420,22 +505,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+var _api = __webpack_require__(/*! config/api */ 11);
+var _fetch = __webpack_require__(/*! config/fetch */ 12);
 var _country = _interopRequireDefault(__webpack_require__(/*! ./country.js */ 75));
-var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni-drawer/uni-drawer.vue */ 76));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // import { RequestApi } from 'config/api';
-// import { GetAllClassUrl } from 'config/fetch';
-var _default = { data: function data() {
+var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni-drawer/uni-drawer.vue */ 76));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  data: function data() {
     return {
       setTime: 59, // 倒计时
+      setTimeFunc: '', // 计时器
+      setTimeStatus: false, // 倒计时状态
       codeCity: _country.default, // 区域code
-      codeNumber: '86', // 区号
+      allSchoolData: [], // 所有学校信息
       schoolArray: [['澳洲', '美国']],
       schoolAUSData: [], // 澳洲学校
       schoolUSAData: [], // 美国学校
       schoolIndex: [0, 0],
       collegeName: '请选择您的学校',
-      choiseCodeStatus: false };
-
+      choiseCodeStatus: false,
+      form: {
+        wxId: '', // 微信id
+        wxOpenId: '', // openid
+        major: '', // 专业
+        graduateSchool: '', // 用户毕业院校
+        areaCode: '86', // 用户手机区号
+        mobile: '', // 用户手机号
+        smsCode: '' // 短信验证码
+        // 表单数据
+      } };
   },
   onLoad: function onLoad() {
     // 获取学校信息
@@ -456,25 +553,93 @@ var _default = { data: function data() {
     uniDrawer: _uniDrawer.default },
 
   methods: {
-    nextFunc: function nextFunc() {},
+    nextFunc: function nextFunc() {
+      var self = this;
+      uni.getStorage({
+        key: 'wx_login_data',
+        success: function success(res) {
+          self.form.wxOpenId = JSON.parse(res.data).authResult.openid;
+        },
+        fail: function fail() {
+          uni.getProvider({
+            service: 'oauth',
+            success: function success(res) {
+              if (~res.provider.indexOf('weixin')) {
+                uni.login({
+                  provider: 'weixin',
+                  success: function success(loginRes) {
+                    uni.setStorageSync('wx_login_data', JSON.stringify(loginRes));
+                  } });
+
+              }
+            } });
+
+        },
+        complete: function complete() {
+          (0, _api.RequestApi)("".concat(_fetch.WxRegister), 'POST', JSON.parse(JSON.stringify(self.form))).then(function (res) {
+            if (Number(res.data.statusCode) === 0) {
+              uni.showToast({
+                title: '保存成功，请继续下单购课!' });
+
+              uni.navigateBack();
+            } else {
+              uni.showToast({
+                title: '信息录入失败!' });
+
+            }
+          });
+        } });
+
+    },
     /**
-                                       * 选择学校
-                                       */
+        * 选择学校
+        */
     choiseCollege: function choiseCollege(e) {
       this.schoolArray.splice(1, 1, [this.schoolAUSData, this.schoolUSAData][e.detail.value]);
     },
     /**
         * 改变学校
         */
-    changeCollege: function changeCollege(e) {
+    changeCollege: function changeCollege(e) {var _this = this;
       this.collegeName = [this.schoolAUSData, this.schoolUSAData][e.detail.value[0]][e.detail.value[1]];
+      this.allSchoolData.map(function (item) {
+        if (_this.collegeName === item.collegeName) _this.form.graduateSchool = item.collegeId;
+      });
     },
     /**
         * 选择区号
         */
     changeCode: function changeCode(data) {
-      this.codeNumber = data;
+      this.form.areaCode = data;
       this.choiseCodeStatus = false;
+    },
+    /**
+        * 获取验证码
+        */
+    getCodeFunc: function getCodeFunc() {var _this2 = this;
+      (0, _api.RequestApi)("".concat(_fetch.GeCode), 'POST', {
+        nation: this.form.areaCode,
+        tel: this.form.mobile }).
+      then(function (res) {
+        if (res.data.code === 0) {
+          uni.showToast({
+            title: res.data.data });
+
+          _this2.setTimeStatus = true;
+          _this2.setTimeFunc = setInterval(function () {
+            _this2.setTime--;
+            if (_this2.setTime === 1) {
+              _this2.setTimeStatus = false;
+              _this2.setTime = 59;
+              clearInterval(_this2.setTimeFunc);
+            }
+          }, 1000);
+        } else {
+          uni.showToast({
+            title: res.data.message });
+
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 7)["default"]))
 
@@ -811,6 +976,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+
 
 
 

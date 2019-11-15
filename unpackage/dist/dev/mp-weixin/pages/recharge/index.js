@@ -89,7 +89,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("view", { staticClass: "content" }, [
-    _vm._m(0),
+    _c("view", { staticClass: "header" }, [
+      _c("image", {
+        staticClass: "header-image",
+        attrs: { src: "/static/recharge/header.png" }
+      }),
+      _c("view", { staticClass: "header-main" }, [
+        _c("text", [_vm._v("当前余额")]),
+        _c("text", { staticClass: "money" }, [
+          _vm._v("￥" + _vm._s(_vm.allData.balance))
+        ])
+      ])
+    ]),
     _c("view", { staticClass: "main" }, [
       _c("text", { staticClass: "title" }, [_vm._v("特惠专区")]),
       _c(
@@ -104,7 +115,7 @@ var render = function() {
               attrs: { eventid: "0b3cbfbc-0-" + index },
               on: {
                 click: function($event) {
-                  _vm.rechargeIndex = index
+                  _vm.changeRecharge(index)
                 }
               }
             },
@@ -150,23 +161,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("view", { staticClass: "header" }, [
-      _c("image", {
-        staticClass: "header-image",
-        attrs: { src: "/static/recharge/header.png" }
-      }),
-      _c("view", { staticClass: "header-main" }, [
-        _c("text", [_vm._v("当前余额")]),
-        _c("text", { staticClass: "money" }, [_vm._v("￥--")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -229,20 +224,67 @@ var _fetch = __webpack_require__(/*! config/fetch */ 12);function _interopRequir
 {
   data: function data() {
     return {
+      allData: {}, // 所有数据
+      wxOpenId: '', // 微信openid
+      couponId: '', // 优惠券id
+      orderPrice: '', // 订单金额
       rechargeData: [],
-      rechargeIndex: 0 };
+      rechargeIndex: 0,
+      token: '' };
 
   },
   onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var Data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                 (0, _api.RequestApi)("".concat(_fetch.GetIndexCoupon), 'GET', {}));case 2:Data = _context.sent;
-              this.rechargeData = Data.data.data;case 4:case "end":return _context.stop();}}}, _callee, this);}));function onLoad() {return _onLoad.apply(this, arguments);}return onLoad;}(),
+              this.rechargeData = Data.data.data;
+              this.couponId = this.rechargeData[0].couponId;
+              this.orderPrice = this.rechargeData[0].rechargeFee;case 6:case "end":return _context.stop();}}}, _callee, this);}));function onLoad() {return _onLoad.apply(this, arguments);}return onLoad;}(),
 
   methods: {
+    /**
+              * 支付接口
+              */
     rechargeFunc: function rechargeFunc() {
-      uni.navigateTo({
-        url: '/pages/login/index' });
+      if (this.wxOpenId && this.allData) {
+        (0, _api.RequestApi)("".concat(_fetch.PayRecharge), 'POST', {
+          wxOpenId: this.wxOpenId, // openid
+          couponId: this.couponId, // 优惠券id
+          orderPrice: this.orderPrice, // 订单金额
+          tradeType: 1, // 支付环境（1 场外，2 场内）
+          payType: 2 // 支付方式（1余额支付，2微信支付,3支付宝, 4银行卡澳币转账 5.银行卡美金转账 6payPal）
+        }, "Bearer ".concat(this.token)).then(function (res) {
+          console.log(res);
+        });
+      } else {
+        uni.navigateTo({
+          url: '/pages/login/index' });
 
-    } } };exports.default = _default;
+      }
+    },
+    changeRecharge: function changeRecharge(eq) {
+      this.rechargeIndex = eq;
+      this.couponId = this.rechargeData[eq].couponId;
+      this.orderPrice = this.rechargeData[eq].rechargeFee;
+    } },
+
+  onShow: function onShow() {
+    var self = this;
+    uni.getStorage({
+      key: 'wx_login_data',
+      success: function success(res) {
+        self.wxOpenId = JSON.parse(res.data).authResult.openid;
+        (0, _api.RequestApi)("".concat(_fetch.WxLogin), 'POST', {
+          OPENID: self.wxOpenId }).
+        then(function (resquest) {
+          console.log(self.wxOpenId);
+          if (Number(resquest.data.statusCode) === 0) {
+            self.token = resquest.data.results.token;
+            self.allData = resquest.data.results.tDueapeCustomerInfo;
+            uni.setStorageSync('storage_token', self.token);
+          }
+        });
+      } });
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 7)["default"]))
 
 /***/ }),

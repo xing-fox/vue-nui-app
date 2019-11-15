@@ -93,6 +93,9 @@
   text-align: right;
   position: relative;
 }
+.content .cont-main .main-form .list .getCode.codeTime {
+  text-align: center;
+}
 .content .cont-main .main-form .list .getCode::before {
   content: '';
   width: 2rpx;

@@ -8,7 +8,8 @@
     "pages/me/coupon",
     "pages/me/data",
     "pages/me/dueape",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/index/details"
   ],
   "subPackages": [],
   "window": {
@@ -44,6 +45,5 @@
       }
     ]
   },
-  "permission": {},
-  "sitemapLocation": "sitemap11.json"
+  "permission": {}
 }

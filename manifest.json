@@ -17,6 +17,7 @@
         },
         /* 模块配置 */
         "modules" : {
+            "Push" : {},
             "Payment" : {},
             "OAuth" : {}
         },
@@ -53,11 +54,27 @@
                 "abiFilters" : []
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "注册时从相册中选择图片作为用户的头像"
+                }
+            },
             /* SDK配置 */
             "sdkConfigs" : {
-                "payment" : {},
-                "oauth" : {}
+                "payment" : {
+                    "weixin" : {
+                        "appid" : "wx81f5b1d4d893eb8c",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wx81f5b1d4d893eb8c",
+                        "appsecret" : "881c59050d035d84cde31f7e4f7f1ac3",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "push" : {}
             },
             "icons" : {
                 "android" : {

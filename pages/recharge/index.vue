@@ -4,7 +4,7 @@
 			<image class="header-image" src="/static/recharge/header.png"></image>
 			<view class="header-main">
 				<text>当前余额</text>
-				<text class="money">￥--</text>
+				<text class="money">￥{{ allData.balance }}</text>
 			</view>
 		</view>
 		<view class="main">
@@ -26,27 +26,86 @@
 
 <script>
 import { RequestApi } from 'config/api';
-import { GetIndexCoupon } from 'config/fetch';
+import { GetIndexCoupon, WxLogin, PayRecharge } from 'config/fetch';
 export default {
 	data() {
 		return {
+			allData: {}, // 所有数据
+			wxOpenId: '', // 微信openid
+			couponId: '', // 优惠券id
+			orderPrice: '', // 订单金额
 			rechargeData: [],
-			rechargeIndex: 0
+			rechargeIndex: 0,
+			token: ''
 		};
 	},
 	async onLoad() {
 		const Data = await RequestApi(`${GetIndexCoupon}`, 'GET', {});
 		this.rechargeData = Data.data.data;
+		this.couponId = this.rechargeData[0].couponId;
+		this.orderPrice = this.rechargeData[0].rechargeFee;
 	},
 	methods: {
+		/**
+		 * 支付接口
+		 */
 		rechargeFunc() {
-			uni.navigateTo({
-				url: '/pages/login/index'
-			});
+			if (this.wxOpenId && this.allData) {
+				uni.request({
+				  url: `${PayRecharge}`,
+					method: 'POST',
+					data: {
+						wxOpenId: this.wxOpenId, // openid
+						couponId: this.couponId, // 优惠券id
+						orderPrice: this.orderPrice, // 订单金额
+						tradeType: 1, // 支付环境（1 场外，2 场内）
+						payType: 2 // 支付方式（1余额支付，2微信支付,3支付宝, 4银行卡澳币转账 5.银行卡美金转账 6payPal）
+					},
+					header: {
+						'Authorization': `${this.token}`
+					},
+				  success: res => {
+						console.log(res)
+						if (Number(res.data.code) === 0) {
+							console.log(res)
+						} else {
+							uni.showToast({
+								title: res.data.data || res.data.msg,
+								icon: 'none'
+							});
+						};
+					},
+					error: err => reject(err)
+				})
+			} else {
+				uni.navigateTo({
+					url: '/pages/login/index'
+				});
+			}
 		},
 		changeRecharge(eq) {
 			this.rechargeIndex = eq;
+			this.couponId = this.rechargeData[eq].couponId;
+			this.orderPrice = this.rechargeData[eq].rechargeFee;
 		}
+	},
+	onShow() {
+		const self = this;
+		uni.getStorage({
+			key: 'wx_login_data',
+			success: function(res) {
+				self.wxOpenId = JSON.parse(res.data).authResult.openid;
+				RequestApi(`${WxLogin}`, 'POST', {
+					OPENID: self.wxOpenId
+				}).then(resquest => {
+					if (Number(resquest.data.statusCode) === 0) {
+						self.token = resquest.data.results.token;
+						self.allData = resquest.data.results.tDueapeCustomerInfo;
+						uni.setStorageSync('storage_token', self.token);
+					}
+				});
+			}
+		});
 	}
 };
 </script>

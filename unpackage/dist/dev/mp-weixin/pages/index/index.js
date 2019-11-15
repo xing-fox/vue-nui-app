@@ -158,22 +158,30 @@ var render = function() {
         "scroll-view",
         {
           staticClass: "content-main",
-          attrs: { "scroll-y": "true", eventid: "ffd6c0c6-2" },
+          attrs: { "scroll-y": "true", eventid: "ffd6c0c6-3" },
           on: { scrolltolower: _vm.addData }
         },
         [
           _vm._l(_vm.AllData, function(item, index0) {
             return _c(
               "view",
-              { key: item.classId, staticClass: "content-list" },
+              {
+                key: item.classId,
+                staticClass: "content-list",
+                attrs: { eventid: "ffd6c0c6-2-" + index0 },
+                on: {
+                  click: function($event) {
+                    _vm.classDetailsFunc(item.classId)
+                  }
+                }
+              },
               [
                 _c("view", { staticClass: "list" }, [
                   _c("image", {
                     staticClass: "list-img",
                     attrs: {
                       mode: "aspectFill",
-                      src:
-                        "https://dueape-nation-1255328906.cos.ap-singapore.myqcloud.com/image/2019103006105513.jpg"
+                      src: "https://" + item.iconPath
                     }
                   }),
                   _c("view", { staticClass: "list-main" }, [
@@ -431,6 +439,14 @@ var _fetch = __webpack_require__(/*! config/fetch */ 12);function _interopRequir
         _this2.AllDataLength = res.data.results.pages;
         _this2.getMoreData = Number(res.data.results.pageNum) !== 1;
       });
+    },
+    /**
+        * 
+        */
+    classDetailsFunc: function classDetailsFunc(id) {
+      uni.navigateTo({
+        url: "/pages/index/details?id=".concat(id) });
+
     },
     /**
         * reset data

@@ -19,6 +19,7 @@
   },
   "permissions": {
     "Payment": {},
+    "Push": {},
     "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
@@ -110,10 +111,27 @@
         ],
         "abiFilters": []
       },
-      "apple": {},
+      "apple": {
+        "privacyDescription": {
+          "NSPhotoLibraryUsageDescription": "注册时从相册中选择图片作为用户的头像"
+        }
+      },
       "plugins": {
-        "payment": {},
-        "oauth": {},
+        "payment": {
+          "weixin": {
+            "appid": "wx81f5b1d4d893eb8c",
+            "UniversalLinks": ""
+          },
+          "appleiap": {}
+        },
+        "oauth": {
+          "weixin": {
+            "appid": "",
+            "appsecret": "",
+            "UniversalLinks": ""
+          }
+        },
+        "push": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"

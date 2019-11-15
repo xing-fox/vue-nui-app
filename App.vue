@@ -12,7 +12,7 @@ export default {
 		})
 		try {
 			// 存储所有学校数据数据
-		    uni.setStorageSync('storage_school', Data)
+			uni.setStorageSync('storage_school', Data)
 		} catch (e) {}
 	},
 	onShow: function() {

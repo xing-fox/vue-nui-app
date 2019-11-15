@@ -26,15 +26,13 @@
 /* 文章场景相关 */
 .uni-drawer {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
-  visibility: hidden;
+  overflow: scroll;
   z-index: 999;
-  height: 100%;
 }
 .uni-drawer.uni-drawer--right .uni-drawer__content {
     left: auto;
@@ -73,9 +71,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 84%;
-    height: 100%;
-    overflow: auto;
+    bottom: 0;
+    width: 86%;
     background: #ffffff;
     -webkit-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
@@ -87,7 +84,7 @@
 
 .content {
   width: 100%;
-  min-height: calc(100vh - 70rpx);
+  min-height: 100vh;
   line-height: 1;
   background: #f5f5f5;
   position: relative;
@@ -180,6 +177,9 @@
   text-align: right;
   position: relative;
 }
+.content .cont-main .main-form .list .getCode.codeTime {
+  text-align: center;
+}
 .content .cont-main .main-form .list .getCode::before {
   content: '';
   width: 2rpx;
@@ -235,7 +235,11 @@
   background: #ff5d04;
 }
 .content .drawer {
-  padding: 30rpx;
+  height: 100%;
+  padding: 30rpx 20rpx 30rpx 30rpx;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .content .drawer .drawer-list {
   width: 100%;
