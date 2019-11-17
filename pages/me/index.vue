@@ -11,7 +11,7 @@
 				<text class="list-text">我的订单</text>
 				<image class="list-arrow" src="/static/icon/arr_right.png"></image>
 			</view>
-			<view class="list">
+			<view class="list" @click="routeChange('/pages/me/wallet')">
 				<image class="list-icon" src="/static/me/2.png"></image>
 				<text class="list-text">我的钱包</text>
 				<image class="list-arrow" src="/static/icon/arr_right.png"></image>
@@ -26,7 +26,7 @@
 				<text class="list-text">我的资料</text>
 				<image class="list-arrow" src="/static/icon/arr_right.png"></image>
 			</view>
-			<view class="list" @click="routeChange">
+			<view class="list" @click="routeChange('/pages/me/dueape')">
 				<image class="list-icon" src="/static/me/5.png"></image>
 				<text class="list-text">关于DueApe</text>
 				<image class="list-arrow" src="/static/icon/arr_right.png"></image>
@@ -41,9 +41,9 @@ export default {
 		return {};
 	},
 	methods: {
-		routeChange () {
+		routeChange (url) {
 			uni.navigateTo({
-				url: '/pages/me/dueape'
+				url: url
 			})
 		}
 	}
