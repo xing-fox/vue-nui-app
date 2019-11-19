@@ -1,1 +1,1 @@
-<view></view>
+<view class="content"><image class="cont-bg" src="/static/login-bg.png" mode></image><view class="cont-money"><image src="/static/login-bg.png" mode></image><image src="/static/login-bg.png" mode></image><view class="cont-money-num">60</view></view></view>

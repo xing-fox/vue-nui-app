@@ -18,8 +18,8 @@
     "url": ""
   },
   "permissions": {
-    "Payment": {},
     "Push": {},
+    "Payment": {},
     "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
@@ -121,21 +121,30 @@
           "weixin": {
             "appid": "wx81f5b1d4d893eb8c",
             "UniversalLinks": ""
-          },
-          "appleiap": {}
-        },
-        "oauth": {
-          "weixin": {
-            "appid": "",
-            "appsecret": "",
-            "UniversalLinks": ""
           }
         },
+        "oauth": {},
         "push": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
           }
+        }
+      }
+    },
+    "nativePlugins": {
+      "TX-TRTCCloud": {
+        "__plugin_info__": {
+          "name": "腾讯sdk方法集锦，已接入直播功能。加群933785472",
+          "description": "腾讯ios,android原生sdk，插件永久维护，欢迎提需求",
+          "platforms": "Android,iOS",
+          "url": "https://ext.dcloud.net.cn/plugin?id=824",
+          "android_package_name": "",
+          "ios_bundle_id": "com.tuoxin.fogDetect",
+          "isCloud": true,
+          "bought": 1,
+          "pid": "824",
+          "parameters": {}
         }
       }
     },
@@ -147,7 +156,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.7",
+      "compilerVersion": "2.4.2",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

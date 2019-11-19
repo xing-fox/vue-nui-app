@@ -67,13 +67,7 @@
                         "UniversalLinks" : ""
                     }
                 },
-                "oauth" : {
-                    "weixin" : {
-                        "appid" : "wx81f5b1d4d893eb8c",
-                        "appsecret" : "881c59050d035d84cde31f7e4f7f1ac3",
-                        "UniversalLinks" : ""
-                    }
-                },
+                "oauth" : {},
                 "push" : {}
             },
             "icons" : {
@@ -106,6 +100,22 @@
                         "spotlight@2x" : "unpackage/res/icons/80x80.png",
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
+                }
+            }
+        },
+        "nativePlugins" : {
+            "TX-TRTCCloud" : {
+                "__plugin_info__" : {
+                    "name" : "腾讯sdk方法集锦，已接入直播功能。加群933785472",
+                    "description" : "腾讯ios,android原生sdk，插件永久维护，欢迎提需求",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=824",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "com.tuoxin.fogDetect",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "824",
+                    "parameters" : {}
                 }
             }
         }
