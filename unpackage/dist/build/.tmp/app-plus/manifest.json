@@ -19,6 +19,7 @@
   },
   "permissions": {
     "Payment": {},
+    "OAuth": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -109,14 +110,55 @@
         ],
         "abiFilters": []
       },
-      "apple": {},
+      "apple": {
+        "privacyDescription": {
+          "NSPhotoLibraryUsageDescription": "注册时从相册中选择图片作为用户的头像",
+          "NSCameraUsageDescription": "321"
+        },
+        "capabilities": {
+          "entitlements": {
+            "com.apple.developer.associated-domains": [
+              "applinks:https://weixin.dueape.com"
+            ]
+          },
+          "plists": {}
+        }
+      },
       "plugins": {
-        "payment": {},
-        "oauth": {},
+        "payment": {
+          "weixin": {
+            "appid": "wx81f5b1d4d893eb8c",
+            "UniversalLinks": "https://www.dueape.com/"
+          }
+        },
+        "oauth": {
+          "weixin": {
+            "appid": "wx81f5b1d4d893eb8c",
+            "appsecret": "wx81f5b1d4d893eb8c",
+            "UniversalLinks": "https://www.dueape.com/"
+          }
+        },
+        "push": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
           }
+        }
+      }
+    },
+    "nativePlugins": {
+      "TX-TRTCCloud": {
+        "__plugin_info__": {
+          "name": "腾讯sdk方法集锦，已接入直播功能。加群933785472",
+          "description": "腾讯ios,android原生sdk，插件永久维护，欢迎提需求",
+          "platforms": "Android,iOS",
+          "url": "https://ext.dcloud.net.cn/plugin?id=824",
+          "android_package_name": "",
+          "ios_bundle_id": "com.tuoxin.fogDetect",
+          "isCloud": true,
+          "bought": 1,
+          "pid": "824",
+          "parameters": {}
         }
       }
     },

@@ -30,7 +30,9 @@ import { GetIndexCoupon, WxLogin, PayRecharge } from 'config/fetch';
 export default {
 	data() {
 		return {
-			allData: {}, // 所有数据
+			allData: {
+				balance: 0
+			}, // 所有数据
 			wxOpenId: '', // 微信openid
 			couponId: '', // 优惠券id
 			orderPrice: '', // 订单金额

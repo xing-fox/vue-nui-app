@@ -1,9 +1,9 @@
 {
     "name" : "DueApe",
     "appid" : "__UNI__B50FAB8",
-    "description" : "DueApe班课系统",
-    "versionName" : "1.0.2",
-    "versionCode" : 102,
+    "description" : "DueApe班课",
+    "versionName" : "1.0.1",
+    "versionCode" : 101,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -17,9 +17,10 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Push" : {},
             "Payment" : {},
-            "OAuth" : {}
+            "OAuth" : {},
+            "VideoPlayer" : {},
+            "LivePusher" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -56,28 +57,31 @@
             /* ios打包配置 */
             "ios" : {
                 "privacyDescription" : {
-                  "NSPhotoLibraryUsageDescription" : "注册时从相册中选择图片作为用户的头像",
-                  "NSCameraUsageDescription" : "321"
+                    "NSPhotoLibraryUsageDescription" : "注册时从相册中选择图片作为用户的头像",
+                    "NSCameraUsageDescription" : "321"
                 },
-								"capabilities": {
-									"entitlements": {
-										"com.apple.developer.associated-domains": [
-											"applinks:https://weixin.dueape.com"
-										]
-									},
-									"plists": {
-									} 
-								}
+                "capabilities" : {
+                    "entitlements" : {
+                        "com.apple.developer.associated-domains" : [ "applinks:https://weixin.dueape.com" ]
+                    },
+                    "plists" : {}
+                }
             },
             /* SDK配置 */
             "sdkConfigs" : {
                 "payment" : {
                     "weixin" : {
                         "appid" : "wx81f5b1d4d893eb8c",
-                        "UniversalLinks" : ""
+                        "UniversalLinks" : "https://www.dueape.com/"
                     }
                 },
-                "oauth" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wx81f5b1d4d893eb8c",
+                        "appsecret" : "wx81f5b1d4d893eb8c",
+                        "UniversalLinks" : "https://www.dueape.com/"
+                    }
+                },
                 "push" : {}
             },
             "icons" : {

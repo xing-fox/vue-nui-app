@@ -7,10 +7,10 @@
   "id": "__UNI__B50FAB8",
   "name": "DueApe",
   "version": {
-    "name": "1.0.2",
-    "code": 102
+    "name": "1.0.1",
+    "code": 101
   },
-  "description": "DueApe班课系统",
+  "description": "DueApe班课",
   "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
@@ -18,9 +18,10 @@
     "url": ""
   },
   "permissions": {
-    "Push": {},
     "Payment": {},
     "OAuth": {},
+    "VideoPlayer": {},
+    "LivePusher": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -113,17 +114,32 @@
       },
       "apple": {
         "privacyDescription": {
-          "NSPhotoLibraryUsageDescription": "注册时从相册中选择图片作为用户的头像"
+          "NSPhotoLibraryUsageDescription": "注册时从相册中选择图片作为用户的头像",
+          "NSCameraUsageDescription": "321"
+        },
+        "capabilities": {
+          "entitlements": {
+            "com.apple.developer.associated-domains": [
+              "applinks:https://weixin.dueape.com"
+            ]
+          },
+          "plists": {}
         }
       },
       "plugins": {
         "payment": {
           "weixin": {
             "appid": "wx81f5b1d4d893eb8c",
-            "UniversalLinks": ""
+            "UniversalLinks": "https://www.dueape.com/"
           }
         },
-        "oauth": {},
+        "oauth": {
+          "weixin": {
+            "appid": "wx81f5b1d4d893eb8c",
+            "appsecret": "wx81f5b1d4d893eb8c",
+            "UniversalLinks": "https://www.dueape.com/"
+          }
+        },
         "push": {},
         "audio": {
           "mp3": {
@@ -156,7 +172,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.3.7",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

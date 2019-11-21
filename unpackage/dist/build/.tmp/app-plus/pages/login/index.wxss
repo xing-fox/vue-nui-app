@@ -35,6 +35,8 @@
   padding-left: 25rpx;
   padding-right: 25rpx;
   border-radius: 10rpx;
+  -webkit-box-shadow: 0rpx -2rpx 8rpx rgba(0, 0, 0, 0.06);
+          box-shadow: 0rpx -2rpx 8rpx rgba(0, 0, 0, 0.06);
   background: #fff;
 }
 .content .cont-main .main-form .list {
@@ -71,7 +73,7 @@
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  color: #b3b3b3;
+  color: #000;
   font-size: 28rpx;
   text-align: left;
 }
@@ -83,6 +85,27 @@
   color: #000;
   font-size: 28rpx;
   text-align: left;
+}
+.content .cont-main .main-form .list .getCode {
+  color: #ff7904;
+  font-size: 28rpx;
+  width: 160rpx;
+  text-align: right;
+  position: relative;
+}
+.content .cont-main .main-form .list .getCode.codeTime {
+  text-align: center;
+}
+.content .cont-main .main-form .list .getCode::before {
+  content: '';
+  width: 2rpx;
+  height: 40rpx;
+  background: #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto 0;
 }
 .content .cont-main .main-form .list .phone {
   -webkit-box-flex: 3;
@@ -109,5 +132,62 @@
 .content .cont-main .main-form .list .arrow {
   width: 30rpx;
   height: 30rpx;
+}
+.content .footer {
+  color: #fff;
+  font-size: 32rpx;
+  margin-top: 30rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, right top, from(#ff5d04), to(#ff9704));
+  background: -o-linear-gradient(left, #ff5d04, #ff9704);
+  background: linear-gradient(to right, #ff5d04, #ff9704);
+}
+.content .footer:active {
+  background: #ff5d04;
+}
+.content .drawer {
+  height: 100%;
+  padding: 30rpx 20rpx 30rpx 30rpx;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.content .drawer .drawer-list {
+  width: 100%;
+  text-align: center;
+}
+.content .drawer .drawer-list .title {
+  color: #c8c8c8;
+  font-size: 30rpx;
+  margin: 0 0 20rpx 0;
+}
+.content .drawer .drawer-list .main {
+  width: 100%;
+  line-height: 90rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.content .drawer .drawer-list .main .country {
+  color: #000;
+  font-size: 32rpx;
+}
+.content .drawer .drawer-list .main .code {
+  color: #c8c8c8;
+  font-size: 30rpx;
 }
 

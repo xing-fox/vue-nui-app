@@ -9,8 +9,11 @@
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+  min-height: 100vh;
   line-height: 1;
-  padding-top: 120rpx;
+  padding-top: 100rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background: #f5f5f5;
 }
 .content .content-picker {
@@ -50,27 +53,27 @@
   position: relative;
 }
 .content .content-picker .picker.picker-school {
-  width: 280rpx;
+  width: 380rpx;
   height: 70rpx;
 }
 .content .content-picker .picker.picker-course {
-  width: 400rpx;
+  width: 300rpx;
   height: 70rpx;
 }
 .content .content-picker .picker .picker-text {
   height: 70rpx;
   line-height: 70rpx;
   display: inline-block;
-  overflow: hiddne;
+  overflow: hidden;
   white-space: nowrap;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
 }
 .content .content-picker .picker .picker-text.school-text {
-  width: 200rpx;
+  width: 300rpx;
 }
 .content .content-picker .picker .picker-text.course-text {
-  width: 320rpx;
+  width: 220rpx;
 }
 .content .content-picker .picker .picker-img {
   width: 30rpx;
@@ -82,9 +85,10 @@
   margin: auto 0;
 }
 .content .content-main {
-  height: calc(100vh - 120rpx);
+  height: calc(100vh - 100rpx);
 }
 .content .content-main .content-list {
+  margin-top: 20rpx;
   margin-right: 25rpx;
   margin-left: 25rpx;
   margin-bottom: 30rpx;
@@ -190,7 +194,8 @@
   font-size: 28rpx;
   width: 100%;
   line-height: 30rpx;
-  padding-bottom: 20rpx;
+  margin-top: 25rpx;
+  padding-bottom: 25rpx;
   text-align: center;
 }
 
