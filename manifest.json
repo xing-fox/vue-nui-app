@@ -20,7 +20,8 @@
             "Payment" : {},
             "OAuth" : {},
             "VideoPlayer" : {},
-            "LivePusher" : {}
+            "LivePusher" : {},
+            "Speech" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -82,7 +83,10 @@
                         "UniversalLinks" : "https://www.dueape.com/"
                     }
                 },
-                "push" : {}
+                "push" : {},
+                "speech" : {
+                    "ifly" : {}
+                }
             },
             "icons" : {
                 "android" : {
